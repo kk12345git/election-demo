@@ -217,3 +217,46 @@ body {
   .sd-meta { justify-content: center; transform: scale(0.9); }
   .sd-points li { font-size: 14px; padding: 14px 16px; }
 }
+/* ── AUDIO PROMPT ── */
+.audio-prompt {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(196, 30, 58, 0.95);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 10001;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: ap-pulse 2s infinite, ap-slide-in 0.6s ease-out;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+}
+.audio-prompt:hover {
+  transform: scale(1.05);
+  background: var(--accent);
+}
+.ap-icon { font-size: 20px; }
+.ap-txt { font-size: 13px; font-weight: 500; letter-spacing: 0.02em; }
+
+@keyframes ap-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(196, 30, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
+}
+
+@keyframes ap-slide-in {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.audio-prompt.hide {
+  transform: scale(0.8) translateX(100px);
+  opacity: 0;
+  pointer-events: none;
+}

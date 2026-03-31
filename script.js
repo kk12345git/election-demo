@@ -22,29 +22,55 @@ const TX = {
 };
 
 /* ── SPEECH SYNTHESIS ── */
+let speechPrimed = false;
+
+function primeAudio() {
+  if (speechPrimed) return;
+  const u = new SpeechSynthesisUtterance('');
+  window.speechSynthesis.speak(u);
+  speechPrimed = true;
+  console.log('Audio Primed');
+  
+  // Hide UI prompt
+  const ap = document.getElementById('audioPrompt');
+  if (ap) ap.classList.add('hide');
+
+  // Trigger speech for current scheme now that audio is unlocked
+  showScheme(currentSchemeId);
+}
+
+function getBestVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  if (curLang === 'ta') {
+    return voices.find(v => v.lang.startsWith('ta') || v.name.toLowerCase().includes('tamil')) || 
+           voices.find(v => v.lang.includes('IN') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google')));
+  }
+  return voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female')) || 
+         voices.find(v => v.lang.startsWith('en'));
+}
+
 function speak(txt) {
   if (isMuted) return;
   window.speechSynthesis.cancel();
   
   const synth = window.speechSynthesis;
-  setTimeout(() => {
+  const speakNow = () => {
     const u = new SpeechSynthesisUtterance(txt);
     u.lang = curLang === 'ta' ? 'ta-IN' : 'en-IN';
     u.rate = 1.0; u.pitch = 1; u.volume = 1;
     
-    const voices = synth.getVoices();
-    let preferred = null;
-
-    if (curLang === 'ta') {
-      preferred = voices.find(v => v.lang.startsWith('ta') || v.name.toLowerCase().includes('tamil'));
-    } else {
-      preferred = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female')) 
-                  || voices.find(v => v.lang.startsWith('en'));
-    }
-
+    const preferred = getBestVoice();
     if (preferred) u.voice = preferred;
+    
     synth.speak(u);
-  }, 50);
+  };
+
+  // Ensure voices are loaded
+  if (synth.getVoices().length === 0) {
+    synth.onvoiceschanged = speakNow;
+  } else {
+    setTimeout(speakNow, 50);
+  }
 }
 
 function toggleAudio() {
@@ -148,5 +174,9 @@ window.addEventListener('load', () => {
     initAutoCycle();
   }, 1500);
 });
+
+document.addEventListener('click', primeAudio, { once: true });
+const ap = document.getElementById('audioPrompt');
+if (ap) ap.addEventListener('click', primeAudio);
 
 document.addEventListener('contextmenu', e => e.preventDefault());
