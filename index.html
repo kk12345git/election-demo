@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The People's Voice — A political party movement built on truth, justice, and equality for a better tomorrow.">
-  <title>THE PEOPLE'S VOICE — Political Party</title>
+  <meta name="description" content="மக்கள் குரல் — சிறப்பு நலத் திட்டங்கள்.">
+  <title>நலத் திட்டங்கள் — மக்கள் குரல்</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,293 +16,68 @@
 
 <!-- LOADER -->
 <div id="loader">
-  <h1>THE PEOPLE'S <span>VOICE</span></h1>
+  <h1>மக்கள் <span>குரல்</span></h1>
   <div class="l-bar"><div class="l-fill"></div></div>
-  <div class="l-txt">Loading Experience…</div>
+  <div class="l-txt">சிறப்பு திட்டங்கள்...</div>
 </div>
-
-<!-- PROGRESS BAR -->
-<div id="prog" style="width:0"></div>
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">THE PEOPLE'S <span>VOICE</span></div>
-  <div class="nav-links">
-    <span class="nl act" onclick="goSlide(0)" data-en="Home" data-ta="முகப்பு">Home</span>
-    <span class="nl" onclick="goSlide(1)" data-en="About" data-ta="பற்றி">About</span>
-    <span class="nl" onclick="goSlide(2)" data-en="Achievements" data-ta="சாதனைகள்">Achievements</span>
-    <span class="nl" onclick="goSlide(3)" data-en="Public Voice" data-ta="மக்கள் குரல்">Public Voice</span>
-    <span class="nl" onclick="goSlide(4)" data-en="Join Us" data-ta="சேருங்கள்">Join Us</span>
-    <span class="nl" onclick="goSlide(5)" data-en="Contact" data-ta="தொடர்பு">Contact</span>
-  </div>
+  <div class="nav-logo">மக்கள் <span>குரல்</span> <span style="font-size:12px;opacity:.5;margin-left:10px">| நலத் திட்டங்கள்</span></div>
   <div class="nav-r">
     <div class="lang-box">
-      <button class="lb act" onclick="setLang('en')">EN</button>
-      <button class="lb" onclick="setLang('ta')">தமிழ்</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+      <button class="lb act" onclick="setLang('ta')">தமிழ்</button>
     </div>
     <button class="aud-btn" id="audBtn" onclick="toggleAudio()">🔊</button>
   </div>
 </nav>
 
-<!-- SLIDES CONTAINER -->
-<div id="sc">
+<!-- MAIN CONTENT -->
+<main id="main-content">
+  <div class="scheme-wrapper">
 
-  <!-- ══ SLIDE 0: HOME ══ -->
-  <section class="slide bg1" id="s0">
-    <div class="grid-lines"></div>
-    <div class="items-outer"><div class="items-track" id="it0">
-
-      <!-- Home Item 0: Hero -->
-      <div class="item"><div class="item-inner split" style="height:100%">
-        <div class="sp-l">
-          <div class="badge"><span id="h-badge">Founded for the People · 2025</span></div>
-          <h1 class="h1">
-            <span id="h-l1">FOR THE</span><br>
-            <span id="h-l2">PEOPLE,</span><br>
-            <span class="red" id="h-l3">BY THE PEOPLE</span>
-          </h1>
-          <p class="body-txt" id="h-sub">A movement built on truth, justice, and equality. Together we shape the future of our nation with integrity and courage.</p>
-          <div class="cta-row">
-            <button class="btn-p" onclick="goSlide(4)" id="h-cta1">JOIN THE MOVEMENT</button>
-            <button class="btn-o" onclick="manualNext()" id="h-cta2">Our Vision →</button>
-          </div>
+    <!-- Sidebar Nav -->
+    <div class="scheme-sidebar">
+      <div class="sb-top">
+        <div class="sb-flag">நலத் திட்டங்கள்</div>
+        <div class="sb-heading">சிறப்பு திட்டங்கள்</div>
+        <div class="sb-count">கிளிக் செய்து முழு விவரம் காணுங்கள்</div>
+      </div>
+      <nav class="sb-nav">
+        <div class="sb-item active" id="sbi-1" onclick="showScheme(1)">
+          <span class="sbi-num">01</span><span class="sbi-txt">மகளிர் அவசர நிதி திட்டம்</span><span class="sbi-arr">›</span>
         </div>
-        <div class="sp-r">
-          <div class="hero-vis">
-            <div class="hcard"><div class="hcard-in"><div class="ctag">Our Promise</div><div class="ctitle">TRUTH &amp; JUSTICE</div></div></div>
-            <div class="hcard"><div class="hcard-in"><div class="ctag">2025 Vision</div><div class="ctitle">NEW ERA</div></div></div>
-            <div class="hcard"><div class="hcard-in"><div class="ctitle">PEOPLE FIRST</div></div></div>
-            <div class="hero-num">2025</div>
-          </div>
+        <div class="sb-item" id="sbi-2" onclick="showScheme(2)">
+          <span class="sbi-num">02</span><span class="sbi-txt">இலவச ஓட்டுனர் உரிம திட்டம்</span><span class="sbi-arr">›</span>
         </div>
-      </div></div>
-
-      <!-- Home Item 1: Mission -->
-      <div class="item bg1"><div class="grid-lines"></div><div class="item-inner full-c">
-        <div class="lbl" id="h1-lbl">Our Mission</div>
-        <h2 class="h2" id="h1-h">A NATION BUILT<br>ON JUSTICE</h2>
-        <p class="body-txt body-c" id="h1-p">We stand for transparent governance, equal rights, and inclusive growth. Our party represents every voice — from the farmer to the entrepreneur. This is not just politics — this is a movement.</p>
-        <div class="cta-row cta-c"><button class="btn-p" onclick="goSlide(1)" id="h1-btn">Explore Our Party →</button></div>
-      </div></div>
-
-    </div></div>
-  </section>
-
-  <!-- ══ SLIDE 1: ABOUT ══ -->
-  <section class="slide bg2" id="s1">
-    <div class="items-outer"><div class="items-track" id="it1">
-
-      <!-- About Item 0: Story -->
-      <div class="item"><div class="item-inner split" style="height:100%">
-        <div class="sp-l">
-          <div class="lbl" id="ab-lbl">Our Story</div>
-          <h2 class="h2" id="ab-h">VISION FOR<br>TOMORROW</h2>
-          <p class="body-txt" id="ab-p">We are a party born from the voices of ordinary citizens. Our mission: build a transparent, equitable nation where every individual's rights are protected and every community's needs are heard.</p>
-          <div class="pillars">
-            <div class="pillar"><div class="pt" id="p1">DEMOCRACY</div><div class="pd" id="p1d">People's voices shape every decision.</div></div>
-            <div class="pillar"><div class="pt" id="p2">EQUALITY</div><div class="pd" id="p2d">Justice for all, regardless of background.</div></div>
-            <div class="pillar"><div class="pt" id="p3">PROGRESS</div><div class="pd" id="p3d">Modern solutions for real challenges.</div></div>
-            <div class="pillar"><div class="pt" id="p4">INTEGRITY</div><div class="pd" id="p4d">Honest leadership, always accountable.</div></div>
-          </div>
+        <div class="sb-item" id="sbi-3" onclick="showScheme(3)">
+          <span class="sbi-num">03</span><span class="sbi-txt">Emission Test இலவசம்</span><span class="sbi-arr">›</span>
         </div>
-        <div class="sp-r">
-          <div class="lstack">
-            <div class="lcard"></div>
-            <div class="lcard"></div>
-            <div class="lcard">
-              <div class="lico">👤</div>
-              <div class="lname" id="lname">PARTY PRESIDENT</div>
-              <div class="lrole" id="lrole">National Leadership</div>
-            </div>
-          </div>
+        <div class="sb-item" id="sbi-4" onclick="showScheme(4)">
+          <span class="sbi-num">04</span><span class="sbi-txt">மூத்தோர் உணவு திட்டம்</span><span class="sbi-arr">›</span>
         </div>
-      </div></div>
-
-      <!-- About Item 1: Leadership Message -->
-      <div class="item bg2"><div class="item-inner full-c">
-        <div class="lbl" id="ab1-lbl">Leadership Message</div>
-        <h2 class="h2" id="ab1-h">POWER BELONGS<br>TO THE PEOPLE</h2>
-        <p class="body-txt body-c" id="ab1-p">Our leaders come from among you — from your streets, schools, and struggles. Every policy we create, every vote we cast, is done in your name and for your future.</p>
-        <div class="cta-row cta-c"><button class="btn-p" onclick="goSlide(2)" id="ab1-btn">See Our Work →</button></div>
-      </div></div>
-
-    </div></div>
-  </section>
-
-  <!-- ══ SLIDE 2: ACHIEVEMENTS ══ -->
-  <section class="slide bg3" id="s2">
-    <div class="items-outer"><div class="items-track" id="it2">
-
-      <!-- Achievements Item 0: Grid -->
-      <div class="item"><div class="item-inner full-c">
-        <div class="lbl" id="ac-lbl">What We've Done</div>
-        <h2 class="h2" id="ac-h">OUR ACHIEVEMENTS</h2>
-        <div class="ach-grid">
-          <div class="ach-card"><div class="ach-ico">🏗️</div><div class="ach-num">500+</div><div class="ach-nm" id="a1">Infrastructure Projects</div><div class="ach-d" id="a1d">Roads, bridges and facilities across all districts.</div></div>
-          <div class="ach-card"><div class="ach-ico">🎓</div><div class="ach-num">1M+</div><div class="ach-nm" id="a2">Students Supported</div><div class="ach-d" id="a2d">Scholarships and free education for youth.</div></div>
-          <div class="ach-card"><div class="ach-ico">🏥</div><div class="ach-num">200+</div><div class="ach-nm" id="a3">Health Camps</div><div class="ach-d" id="a3d">Free medical services for rural communities.</div></div>
-          <div class="ach-card"><div class="ach-ico">💼</div><div class="ach-num">300K+</div><div class="ach-nm" id="a4">Jobs Created</div><div class="ach-d" id="a4d">Employment across agriculture and tech.</div></div>
-          <div class="ach-card"><div class="ach-ico">🌱</div><div class="ach-num">10M+</div><div class="ach-nm" id="a5">Trees Planted</div><div class="ach-d" id="a5d">Green initiative for a clean environment.</div></div>
-          <div class="ach-card"><div class="ach-ico">⚡</div><div class="ach-num">100%</div><div class="ach-nm" id="a6">Village Electrification</div><div class="ach-d" id="a6d">Every household connected to power.</div></div>
+        <div class="sb-item" id="sbi-5" onclick="showScheme(5)">
+          <span class="sbi-num">05</span><span class="sbi-txt">Free Tag சுங்க விலக்கு</span><span class="sbi-arr">›</span>
         </div>
-      </div></div>
-
-      <!-- Achievements Item 1: Impact -->
-      <div class="item bg3"><div class="item-inner full-c">
-        <div class="lbl" id="ac1-lbl">Real Impact</div>
-        <h2 class="h2" id="ac1-h">CHANGE YOU<br>CAN SEE</h2>
-        <p class="body-txt body-c" id="ac1-p">Every number above represents real lives transformed. A child who got an education, a family with clean water, a farmer with support. These are not statistics — they are our promise kept.</p>
-        <div class="cta-row cta-c"><button class="btn-p" onclick="goSlide(3)" id="ac1-btn">Hear the People →</button></div>
-      </div></div>
-
-    </div></div>
-  </section>
-
-  <!-- ══ SLIDE 3: PUBLIC VOICE ══ -->
-  <section class="slide bg4" id="s3">
-    <div class="items-outer"><div class="items-track" id="it3">
-
-      <!-- Public Voice Item 0: Testimonials -->
-      <div class="item"><div class="item-inner full-c">
-        <div class="lbl" id="pv-lbl">Citizens Speak</div>
-        <h2 class="h2" id="pv-h">THE PEOPLE'S VOICE</h2>
-        <div class="tgrid">
-          <div class="tcard">
-            <div class="qmark">"</div>
-            <p class="ttext" id="t1">"This party gave my village clean water and proper roads. For the first time, our voices were truly heard."</p>
-            <div class="tauth">
-              <div class="tav" style="background:linear-gradient(135deg,#1a3a6b,#c41e3a)">👨</div>
-              <div><div class="taname" id="t1n">Rajendran K.</div><div class="taplace" id="t1p">Farmer, Madurai</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <div class="qmark">"</div>
-            <p class="ttext" id="t2">"My daughter received a scholarship. Now she is studying engineering in a top college. Dreams came true."</p>
-            <div class="tauth">
-              <div class="tav" style="background:linear-gradient(135deg,#c41e3a,#8b1429)">👩</div>
-              <div><div class="taname" id="t2n">Meenakshi S.</div><div class="taplace" id="t2p">Teacher, Coimbatore</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <div class="qmark">"</div>
-            <p class="ttext" id="t3">"They built a hospital in our area. My mother got treated for free. This is real leadership."</p>
-            <div class="tauth">
-              <div class="tav" style="background:linear-gradient(135deg,#d4a843,#1a3a6b)">👦</div>
-              <div><div class="taname" id="t3n">Suresh M.</div><div class="taplace" id="t3p">Business Owner, Chennai</div></div>
-            </div>
-          </div>
+        <div class="sb-item" id="sbi-6" onclick="showScheme(6)">
+          <span class="sbi-num">06</span><span class="sbi-txt">இருசக்கர காப்பீடு திட்டம்</span><span class="sbi-arr">›</span>
         </div>
-      </div></div>
-
-      <!-- Public Voice Item 1: CTA -->
-      <div class="item bg4"><div class="item-inner full-c">
-        <div class="lbl" id="pv1-lbl">Your Voice Matters</div>
-        <h2 class="h2" id="pv1-h">EVERY VOTE<br>TELLS A STORY</h2>
-        <p class="body-txt body-c" id="pv1-p">Thousands of citizens have stood with us. Their trust is our strength. Their dreams are our direction. When the people speak, we listen — and we act.</p>
-        <div class="cta-row cta-c"><button class="btn-p" onclick="goSlide(4)" id="pv1-btn">Become a Member →</button></div>
-      </div></div>
-
-    </div></div>
-  </section>
-
-  <!-- ══ SLIDE 4: JOIN ══ -->
-  <section class="slide bg5" id="s4">
-    <div class="items-outer"><div class="items-track" id="it4">
-      <div class="item"><div class="item-inner join-side" style="height:100%">
-        <div class="sp-l">
-          <div class="lbl" id="j-lbl">Be Part of the Change</div>
-          <h2 class="h2" id="j-h">JOIN THE<br>MOVEMENT</h2>
-          <p class="body-txt" id="j-p">Your participation makes the difference. Register as a member, volunteer, or supporter.</p>
-          <div class="jstats">
-            <div class="jstat"><div class="jnum">50K+</div><div class="jlbl" id="js1">Active Members</div></div>
-            <div class="jstat"><div class="jnum">200+</div><div class="jlbl" id="js2">Districts</div></div>
-            <div class="jstat"><div class="jnum">15+</div><div class="jlbl" id="js3">Years of Service</div></div>
-            <div class="jstat"><div class="jnum">100%</div><div class="jlbl" id="js4">Transparency</div></div>
-          </div>
-        </div>
-        <div class="form-box">
-          <div class="form-t" id="ft">REGISTER NOW</div>
-          <div class="form-s" id="fs">Fill in your details to join us</div>
-          <div class="frow">
-            <div class="fg"><label class="flbl" id="fl1">First Name</label><input class="fi" type="text" placeholder="Your name"></div>
-            <div class="fg"><label class="flbl" id="fl2">Last Name</label><input class="fi" type="text" placeholder="Last name"></div>
-          </div>
-          <div class="fg"><label class="flbl" id="fl3">Mobile Number</label><input class="fi" type="tel" placeholder="+91 XXXXX XXXXX"></div>
-          <div class="fg"><label class="flbl" id="fl4">District</label><input class="fi" type="text" placeholder="Your district"></div>
-          <div class="fg">
-            <label class="flbl" id="fl5">Role</label>
-            <select class="fi fsel">
-              <option value="">Select role</option>
-              <option>Party Member</option>
-              <option>Volunteer</option>
-              <option>Supporter</option>
-              <option>Donor</option>
-            </select>
-          </div>
-          <button class="fsub" id="fbtn" onclick="handleForm()">SUBMIT &amp; JOIN ✓</button>
-        </div>
-      </div></div>
-    </div></div>
-  </section>
-
-  <!-- ══ SLIDE 5: CONTACT ══ -->
-  <section class="slide bg6" id="s5">
-    <div class="items-outer"><div class="items-track" id="it5">
-      <div class="item"><div class="item-inner split" style="height:100%">
-        <div class="sp-l">
-          <div class="lbl" id="c-lbl">Get In Touch</div>
-          <h2 class="h2" id="c-h">CONTACT US</h2>
-          <div class="cinfo" style="margin-top:24px">
-            <div class="citem">
-              <div class="cico">📍</div>
-              <div><div class="clbl" id="cl1">Headquarters</div><div class="cval" id="cv1">People's Voice House, 14 Republic Road,<br>Chennai – 600 001, Tamil Nadu</div></div>
-            </div>
-            <div class="citem">
-              <div class="cico">📞</div>
-              <div><div class="clbl" id="cl2">Phone</div><div class="cval">+91 44 2234 5678</div></div>
-            </div>
-            <div class="citem">
-              <div class="cico">✉️</div>
-              <div><div class="clbl" id="cl3">Email</div><div class="cval">info@peoplesvoice.in</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="sp-r" style="flex-direction:column;align-items:flex-start;padding:60px 44px;">
-          <div class="lbl" id="sl-t">Follow Us</div>
-          <div class="social-row">
-            <a class="sbtn" href="#">𝕏 Twitter</a>
-            <a class="sbtn" href="#">📘 Facebook</a>
-            <a class="sbtn" href="#">📷 Instagram</a>
-            <a class="sbtn" href="#">▶️ YouTube</a>
-            <a class="sbtn" href="#">💬 WhatsApp</a>
-          </div>
-          <div class="off-box">
-            <div class="lbl" id="ol">Office Hours</div>
-            <div style="font-size:13px;color:rgba(245,240,232,.62);line-height:2" id="oh">
-              Mon – Fri: 9:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 1:00 PM<br>Sunday: Closed
-            </div>
-          </div>
+      </nav>
+      <div class="sb-foot">
+        <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:12px;text-align:center">எங்களுடன் இணையுங்கள்</div>
+        <div class="social-mini">
+          <a href="#">𝕏</a><a href="#">📘</a><a href="#">📷</a><a href="#">▶️</a><a href="#">💬</a>
         </div>
       </div>
-      <div class="footer-bar">
-        <span id="fcopy">© 2025 The People's Voice. All Rights Reserved.</span>
-        <span>Designed for Democracy</span>
-      </div>
-      </div>
-    </div></div>
-  </section>
+    </div>
 
-</div><!-- #sc -->
+    <!-- Detail Panel -->
+    <div class="scheme-detail" id="schemeDetail"></div>
 
-<!-- UI CONTROLS -->
-<div class="item-dots" id="idots"></div>
-<div class="arrows">
-  <button class="abtn" id="prevBtn" onclick="manualPrev()" disabled>←</button>
-  <button class="abtn" id="nextBtn" onclick="manualNext()">→</button>
-</div>
-<!-- FIX: Changed class .cur to .counter-current to avoid clash with #cur (custom cursor element) -->
-<div class="counter"><span class="counter-current" id="curNum">01</span><span>/ 06</span></div>
-<div id="timer-bar"><div id="timer-fill"></div></div>
+  </div>
+</main>
+
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>

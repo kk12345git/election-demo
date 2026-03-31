@@ -1,143 +1,22 @@
 /* ═══════════════════════════════════════
-   THE PEOPLE'S VOICE — Political Website
+   THE PEOPLE'S VOICE — Schemes Portal
    JavaScript
    ═══════════════════════════════════════ */
 
 /* ── STATE ── */
-let curSlide = 0;
-const TOTAL = 6;
-let isAnim = false;
+let curLang = 'ta';
 let isMuted = false;
-let curLang = 'en';
-const itemIdx = [0, 0, 0, 0, 0, 0];
-const itemCounts = [2, 2, 2, 2, 1, 1];
-const ITEM_DUR = 5500; // ms per item
-let rafId = null, timerStart = 0;
 
 /* ── CONTENT TRANSLATIONS ── */
 const TX = {
   en: {
-    'h-badge': 'Founded for the People · 2025',
-    'h-l1': 'FOR THE', 'h-l2': 'PEOPLE,', 'h-l3': 'BY THE PEOPLE',
-    'h-sub': 'A movement built on truth, justice, and equality. Together we shape the future of our nation.',
-    'h-cta1': 'JOIN THE MOVEMENT', 'h-cta2': 'Our Vision →',
-    'h1-lbl': 'Our Mission', 'h1-h': 'A NATION BUILT<br>ON JUSTICE',
-    'h1-p': 'We stand for transparent governance, equal rights, and inclusive growth. This is not just politics — this is a movement.',
-    'h1-btn': 'Explore Our Party →',
-    'ab-lbl': 'Our Story', 'ab-h': 'VISION FOR<br>TOMORROW',
-    'ab-p': 'We are a party born from the voices of ordinary citizens. Our mission: a transparent, equitable nation where every right is protected.',
-    'p1': 'DEMOCRACY', 'p1d': "People's voices shape every decision.",
-    'p2': 'EQUALITY', 'p2d': 'Justice for all, regardless of background.',
-    'p3': 'PROGRESS', 'p3d': 'Modern solutions for real challenges.',
-    'p4': 'INTEGRITY', 'p4d': 'Honest leadership, always accountable.',
-    'lname': 'PARTY PRESIDENT', 'lrole': 'National Leadership',
-    'ab1-lbl': 'Leadership Message', 'ab1-h': 'POWER BELONGS<br>TO THE PEOPLE',
-    'ab1-p': 'Our leaders come from among you. Every policy, every vote is done in your name and for your future.',
-    'ab1-btn': 'See Our Work →',
-    'ac-lbl': "What We've Done", 'ac-h': 'OUR ACHIEVEMENTS',
-    'a1': 'Infrastructure Projects', 'a1d': 'Roads, bridges and facilities across all districts.',
-    'a2': 'Students Supported', 'a2d': 'Scholarships and free education for youth.',
-    'a3': 'Health Camps', 'a3d': 'Free medical services for rural communities.',
-    'a4': 'Jobs Created', 'a4d': 'Employment across agriculture and tech.',
-    'a5': 'Trees Planted', 'a5d': 'Green initiative for a clean environment.',
-    'a6': 'Village Electrification', 'a6d': 'Every household connected to power.',
-    'ac1-lbl': 'Real Impact', 'ac1-h': 'CHANGE YOU<br>CAN SEE',
-    'ac1-p': 'Every number represents a real life transformed. A child educated. A family with clean water. Our promise kept.',
-    'ac1-btn': 'Hear the People →',
-    'pv-lbl': 'Citizens Speak', 'pv-h': "THE PEOPLE'S VOICE",
-    't1': '"This party gave my village clean water and proper roads. Our voices were truly heard."',
-    't1n': 'Rajendran K.', 't1p': 'Farmer, Madurai',
-    't2': '"My daughter received a scholarship. Now she is studying engineering in a top college."',
-    't2n': 'Meenakshi S.', 't2p': 'Teacher, Coimbatore',
-    't3': '"They built a hospital in our area. My mother got treated for free."',
-    't3n': 'Suresh M.', 't3p': 'Business Owner, Chennai',
-    'pv1-lbl': 'Your Voice Matters', 'pv1-h': 'EVERY VOTE<br>TELLS A STORY',
-    'pv1-p': 'Thousands of citizens have stood with us. Their trust is our strength. Their dreams are our direction.',
-    'pv1-btn': 'Become a Member →',
-    'j-lbl': 'Be Part of the Change', 'j-h': 'JOIN THE<br>MOVEMENT',
-    'j-p': 'Your participation makes the difference. Register as a member, volunteer, or supporter.',
-    'js1': 'Active Members', 'js2': 'Districts', 'js3': 'Years of Service', 'js4': 'Transparency',
-    'ft': 'REGISTER NOW', 'fs': 'Fill in your details to join us',
-    'fl1': 'First Name', 'fl2': 'Last Name', 'fl3': 'Mobile Number', 'fl4': 'District', 'fl5': 'Role',
-    'fbtn': 'SUBMIT & JOIN ✓',
-    'c-lbl': 'Get In Touch', 'c-h': 'CONTACT US',
-    'cl1': 'Headquarters', 'cl2': 'Phone', 'cl3': 'Email',
-    'cv1': "People's Voice House, 14 Republic Road,<br>Chennai – 600 001, Tamil Nadu",
-    'sl-t': 'Follow Us', 'ol': 'Office Hours',
-    'oh': 'Mon – Fri: 9:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 1:00 PM<br>Sunday: Closed',
+    'sc-lbl': 'Welfare Schemes · Special Portal',
     'fcopy': "© 2025 The People's Voice. All Rights Reserved."
   },
   ta: {
-    'h-badge': 'மக்களுக்காக நிறுவப்பட்டது · 2025',
-    'h-l1': 'மக்களால்', 'h-l2': 'மக்களுக்காக,', 'h-l3': 'மக்கள் குரல்',
-    'h-sub': 'உண்மை, நீதி, சமத்துவம் என்ற அடிப்படையில் கட்டமைக்கப்பட்ட இயக்கம். நாடின் எதிர்காலத்தை நாம் ஒன்றாக வடிவமைப்போம்.',
-    'h-cta1': 'இயக்கத்தில் சேருங்கள்', 'h-cta2': 'எங்கள் நோக்கம் →',
-    'h1-lbl': 'எங்கள் நோக்கம்', 'h1-h': 'நீதியில் கட்டமைக்கப்பட்ட<br>நாடு',
-    'h1-p': 'வெளிப்படையான ஆட்சி, சம உரிமை, அனைவரையும் உள்ளடக்கிய வளர்ச்சி. இது வெறும் அரசியல் அல்ல.',
-    'h1-btn': 'கட்சியை அறிந்து கொள்ளுங்கள் →',
-    'ab-lbl': 'நம் கதை', 'ab-h': 'நாளைய<br>கனவு',
-    'ab-p': 'நாங்கள் சாதாரண குடிமக்களின் குரல்களிலிருந்து பிறந்த கட்சி. ஒவ்வொரு உரிமையும் பாதுகாக்கப்படும் நாடு கட்டமைப்பதே நோக்கம்.',
-    'p1': 'ஜனநாயகம்', 'p1d': 'மக்கள் குரல் ஒவ்வொரு முடிவையும் தீர்மானிக்கிறது.',
-    'p2': 'சமத்துவம்', 'p2d': 'அனைவருக்கும் நீதி, வேற்றுமையின்றி.',
-    'p3': 'முன்னேற்றம்', 'p3d': 'நவீன தீர்வுகள், உண்மையான சவால்களுக்கு.',
-    'p4': 'நேர்மை', 'p4d': 'நேர்மையான தலைமை, எப்போதும் பொறுப்பான.',
-    'lname': 'கட்சி தலைவர்', 'lrole': 'தேசிய தலைமை',
-    'ab1-lbl': 'தலைமை செய்தி', 'ab1-h': 'அதிகாரம்<br>மக்களுக்கே',
-    'ab1-p': 'எங்கள் தலைவர்கள் உங்களில் இருந்தே வருகிறார்கள். ஒவ்வொரு கொள்கையும் உங்கள் பெயரில், உங்கள் எதிர்காலத்திற்காக.',
-    'ab1-btn': 'எங்கள் பணிகளை பாருங்கள் →',
-    'ac-lbl': 'நாம் செய்தது', 'ac-h': 'நம் சாதனைகள்',
-    'a1': 'உள்கட்டமைப்பு திட்டங்கள்', 'a1d': 'அனைத்து மாவட்டங்களிலும் சாலைகள், பாலங்கள்.',
-    'a2': 'மாணவர்கள் ஆதரவு', 'a2d': 'தகுதியான இளைஞர்களுக்கு உதவித்தொகை.',
-    'a3': 'சுகாதார முகாம்கள்', 'a3d': 'கிராமப்புற சமூகங்களுக்கு இலவச மருத்துவம்.',
-    'a4': 'வேலை வாய்ப்புகள்', 'a4d': 'விவசாயம், தொழில்நுட்பம் துறைகளில் வேலை.',
-    'a5': 'நடப்பட்ட மரங்கள்', 'a5d': 'சுற்றுச்சூழல் பாதுகாப்பு முயற்சி.',
-    'a6': 'மின்சாரம் 100%', 'a6d': 'ஒவ்வொரு வீடும் மின்சாரத்துடன் இணைக்கப்பட்டது.',
-    'ac1-lbl': 'உண்மையான தாக்கம்', 'ac1-h': 'நீங்கள் காணும்<br>மாற்றம்',
-    'ac1-p': 'ஒவ்வொரு எண்ணும் மாற்றப்பட்ட உயிர்களை குறிக்கிறது. நாங்கள் கொடுத்த வாக்கை காத்தோம்.',
-    'ac1-btn': 'மக்களைக் கேளுங்கள் →',
-    'pv-lbl': 'மக்கள் பேசுகிறார்கள்', 'pv-h': 'மக்கள் குரல்',
-    't1': '"இந்த கட்சி எங்கள் கிராமத்திற்கு சுத்தமான தண்ணீரும் சரியான சாலைகளும் கொடுத்தது."',
-    't1n': 'ராஜேந்திரன் க.', 't1p': 'விவசாயி, மதுரை',
-    't2': '"என் மகளுக்கு உதவித்தொகை கிடைத்தது. இப்போது அவள் சிறந்த கல்லூரியில் படிக்கிறாள்."',
-    't2n': 'மீனாக்ஷி ச.', 't2p': 'ஆசிரியர், கோயம்புத்தூர்',
-    't3': '"அவர்கள் மருத்துவமனை கட்டினார்கள். என் அம்மா இலவசமாக சிகிச்சை பெற்றார்."',
-    't3n': 'சுரேஷ் ம.', 't3p': 'சிறு வணிகர், சென்னை',
-    'pv1-lbl': 'உங்கள் குரல் முக்கியம்', 'pv1-h': 'ஒவ்வொரு வாக்கும்<br>ஒரு கதை',
-    'pv1-p': 'ஆயிரக்கணக்கான குடிமக்கள் எங்களுடன் நிற்கிறார்கள். அவர்களின் நம்பிக்கை எங்கள் வலிமை.',
-    'pv1-btn': 'உறுப்பினராகுங்கள் →',
-    'j-lbl': 'மாற்றத்தின் பகுதியாக இருங்கள்', 'j-h': 'இயக்கத்தில்<br>சேருங்கள்',
-    'j-p': 'உங்கள் பங்கு மாற்றத்தை ஏற்படுத்தும். உறுப்பினராக அல்லது தன்னார்வலராக பதிவு செய்யுங்கள்.',
-    'js1': 'செயலில் உறுப்பினர்கள்', 'js2': 'மாவட்டங்கள்', 'js3': 'சேவை ஆண்டுகள்', 'js4': 'வெளிப்படைத்தன்மை',
-    'ft': 'இப்போதே பதிவு செய்யுங்கள்', 'fs': 'சேர உங்கள் விவரங்களை நிரப்புங்கள்',
-    'fl1': 'முதல் பெயர்', 'fl2': 'கடைசி பெயர்', 'fl3': 'மொபைல் எண்', 'fl4': 'மாவட்டம்', 'fl5': 'பங்கு',
-    'fbtn': 'சமர்ப்பி & சேர ✓',
-    'c-lbl': 'தொடர்பு கொள்ளுங்கள்', 'c-h': 'தொடர்பு',
-    'cl1': 'தலைமையகம்', 'cl2': 'தொலைபேசி', 'cl3': 'மின்னஞ்சல்',
-    'cv1': 'மக்கள் குரல் மனை, 14 குடியரசு சாலை,<br>சென்னை – 600 001, தமிழ்நாடு',
-    'sl-t': 'எங்களை பின்தொடருங்கள்', 'ol': 'அலுவலக நேரம்',
-    'oh': 'திங்கள் – வெள்ளி: காலை 9 – மாலை 6<br>சனி: காலை 9 – பகல் 1<br>ஞாயிறு: மூடப்பட்டது',
+    'sc-lbl': 'நலத் திட்டங்கள் · சிறப்பு தளம்',
     'fcopy': '© 2025 மக்கள் குரல். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.'
   }
-};
-
-/* ── NARRATIONS (for speech synthesis) ── */
-const NARR = {
-  en: [
-    ["Welcome to The People's Voice. A movement built on truth, justice, and equality. Together we shape the future of our nation.", "Our mission is to build a nation on justice. We stand for transparent governance, equal rights, and inclusive growth for every citizen."],
-    ["Our party was founded from the voices of ordinary citizens. We believe in democracy, equality, progress, and integrity.", "Power belongs to the people. Our leaders serve from within the communities, not from above them."],
-    ["From five hundred infrastructure projects to over three hundred thousand jobs, our achievements speak for themselves.", "Every number represents a real life transformed. A child educated. A family with clean water. Our promise kept."],
-    ["The people of this nation have spoken. Their voices reflect real change and real hope in every community.", "Thousands of citizens have stood with us. Their trust is our strength. Their dreams are our direction."],
-    ["Join the movement. Fifty thousand members strong. Register now and be part of the change our nation deserves."],
-    ["Contact us at our headquarters in Chennai. Follow us on social media and stay connected with the voice of the people."]
-  ],
-  ta: [
-    ["மக்கள் குரலுக்கு வரவேற்கிறோம். உண்மை, நீதி, சமத்துவம் என்ற அடிப்படையில் கட்டமைக்கப்பட்ட இயக்கம்.", "நீதியில் நாடை கட்டமைப்பதே எங்கள் நோக்கம். வெளிப்படையான ஆட்சி, சம உரிமை, அனைவரையும் உள்ளடக்கிய வளர்ச்சி."],
-    ["ஜனநாயகம், சமத்துவம், முன்னேற்றம், நேர்மை என்ற நான்கு தூண்களில் நாங்கள் நம்பிக்கை கொள்கிறோம்.", "அதிகாரம் மக்களுக்கே சொந்தம். எங்கள் தலைவர்கள் சமூகங்களுக்கு சேவை செய்கிறார்கள்."],
-    ["ஐந்நூறு உள்கட்டமைப்பு திட்டங்கள் முதல் மூன்று லட்சம் வேலை வாய்ப்புகள் வரை எங்கள் சாதனைகள் பேசுகின்றன.", "ஒவ்வொரு எண்ணும் ஒரு உயிரை குறிக்கிறது. படித்த குழந்தை. தண்ணீர் பெற்ற குடும்பம். நாங்கள் வாக்கை காத்தோம்."],
-    ["இந்த நாட்டின் மக்கள் பேசியுள்ளனர். அவர்களின் குரல் உண்மையான மாற்றத்தை பிரதிபலிக்கிறது.", "ஆயிரக்கணக்கான குடிமக்கள் எங்களுடன் நிற்கிறார்கள். அவர்களின் நம்பிக்கை எங்கள் வலிமை."],
-    ["இயக்கத்தில் சேருங்கள். ஐம்பதாயிரம் உறுப்பினர்கள் உள்ளனர். இப்போதே பதிவு செய்யுங்கள்."],
-    ["சென்னையில் உள்ள எங்கள் தலைமையகத்தில் தொடர்பு கொள்ளுங்கள். சமூக ஊடகங்களில் பின்தொடருங்கள்."]
-  ]
 };
 
 /* ── SPEECH SYNTHESIS ── */
@@ -146,172 +25,157 @@ function speak(txt) {
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(txt);
   u.lang = curLang === 'ta' ? 'ta-IN' : 'en-IN';
-  u.rate = 0.88; u.pitch = 1; u.volume = 0.9;
+  u.rate = 0.9; u.pitch = 1; u.volume = 0.9;
+  
   const vv = window.speechSynthesis.getVoices();
-  const preferred = vv.find(v =>
-    curLang === 'ta'
-      ? v.lang.startsWith('ta')
+  const preferred = vv.find(v => 
+    curLang === 'ta' 
+      ? v.lang.startsWith('ta') 
       : (v.lang.startsWith('en') && v.name.toLowerCase().includes('female'))
   );
   if (preferred) u.voice = preferred;
   window.speechSynthesis.speak(u);
 }
 
-function speakCurrent() {
-  const arr = NARR[curLang][curSlide];
-  const i = itemIdx[curSlide];
-  speak(arr[Math.min(i, arr.length - 1)]);
-}
-
 function toggleAudio() {
   isMuted = !isMuted;
   document.getElementById('audBtn').textContent = isMuted ? '🔇' : '🔊';
-  if (isMuted) {
-    window.speechSynthesis.cancel();
-  } else {
-    speakCurrent();
-  }
+  if (isMuted) window.speechSynthesis.cancel();
 }
 
-/* ── TIMER ── */
-function startTimer() {
-  stopTimer();
-  const fill = document.getElementById('timer-fill');
-  fill.style.transition = 'none';
-  fill.style.width = '0%';
-  timerStart = performance.now();
-
-  function tick(now) {
-    const pct = Math.min(((now - timerStart) / ITEM_DUR) * 100, 100);
-    fill.style.width = pct + '%';
-    if (pct < 100) {
-      rafId = requestAnimationFrame(tick);
-    } else {
-      rafId = null;
-      autoAdvance();
+/* ── SCHEME DATA ── */
+const SCHEME_DATA = {
+  ta: {
+    1: {
+      ico: '💳', t: 'மகளிர் அவசர நிதி திட்டம்', amt: '₹24,000 – ₹48,000',
+      p: ['குடும்பத் தலைவிகள், மாணவர்கள் மற்றும் அரசு நிதி பெறும் பயனாளர்களுக்கு பொருந்தும்.', 'அங்கீகரிக்கப்பட்ட Smart Card மூலம் அவசரகால நிதித் தேவைகளுக்கு கிரெடிட் கார்டு போல பயன்படுத்தலாம்.', 'Bonds & Binding முறையில் 100% பாதுகாப்பான நிதி வழங்கும் திட்டம்.'],
+      h: 'நிர்வாகக் குழு மற்றும் வங்கிகளுடன் இணைந்து செயல்படுத்தப்படும் உலகத் தரம் வாய்ந்த நிதித் திட்டம்.'
+    },
+    2: {
+      ico: '🚗', t: 'இலவச ஓட்டுனர் உரிம திட்டம்', amt: '2026 முதல் அமல்',
+      p: ['தமிழக இளைஞர்களுக்கு அரசு செலவிலேயே அடிப்படை ஓட்டுனர் உரிமம் வழங்கப்படும்.', '16 வயது முடிந்தவுடன் MCWOG இலிருந்து MCWG ஆக சட்டத் திருத்தம் செய்து உரிமம் வழங்கப்படும்.', 'சாலை விதிகளைப் பின்பற்றும் இளைஞர்களுக்கு Spot fine முறையிலிருந்து விலக்கு அளிக்கப்படும்.'],
+      h: 'ஒழக்கமான மற்றும் பாதுகாப்பான ஓட்டுனர் சமூகத்தை உருவாக்குவதே எமது நோக்கம்.'
+    },
+    3: {
+      ico: '🌿', t: 'இலவச Emission Test திட்டம்', amt: '100% இலவசம்',
+      p: ['அனைத்து ரக வாகனங்களுக்கும் மாசு கட்டுப்பாட்டு சோதனை அரசு செலவிலேயே இலவசம்.', 'சுற்றுச்சூழலை மாசுபடுத்தும் கரிம வாயு வெளியேற்றத்தை கண்டறிந்து சரிசெய்யும் நவீன தொழில்நுட்பம்.', 'மக்களின் ஆரோக்கியம் மற்றும் இயற்கை வளத்தை காக்கும் முன்னோடி பசுமைத் திட்டம்.'],
+      h: 'நமது சுற்றுப்புறத்தை தூய்மையாக வைத்திருக்க நாம் எடுக்கும் ஒரு பெரும் முயற்சி.'
+    },
+    4: {
+      ico: '🍽️', t: 'மூத்த குடிமக்கள் உணவு திட்டம்', amt: 'தரமான உணவு உறுதி',
+      p: ['மூத்த குடிமக்களுக்கு அவர்கள் வசிப்பிடத்திற்கு அருகிலுள்ள அங்கீகரிக்கப்பட்ட உணவகங்களில் உணவு.', 'Smart Card மூலம் ஒரு வேளை தரமான மற்றும் சத்தான உணவு இலவசமாக வழங்கப்படும்.', 'முதியவர்கள் யாரையும் சார்ந்து இருக்கத் தேவையில்லாத கௌரவமான வாழ்வாதாரம்.'],
+      h: 'முதியவர்களின் பசி போக்கி, அவர்களின் கண்ணியத்தைப் பாதுகாப்பது எமது கடமை.'
+    },
+    5: {
+      ico: '🛣️', t: 'Free Tag — சுங்க விலக்கு திட்டம்', amt: 'சுங்கவரி இல்லா பயணம்',
+      p: ['மருத்துவ அவசரத் தேவைகள், விவசாயப் பொருட்கள் ஏற்றிச் செல்லும் வாகனங்களுக்கு முழு சுங்க விலக்கு.', 'விடுமுறை நாட்கள் மற்றும் முக்கிய திருவிழா காலங்களில் பொதுமக்களுக்கு சுங்கவரி கிடையாது.', 'FASTag முறையையும் தாண்டி தொழில்நுட்ப ரீதியாக செயல்படுத்தப்படும் சிறப்புத் திட்டம்.'],
+      h: 'பயணத் தடைகளை நீக்கி, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் புரட்சிகர முயற்சி.'
+    },
+    6: {
+      ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்',
+      p: ['தமிழகத்தில் உள்ள 1.20 கோடி இருசக்கர வாகன உரிமையாளர்களுக்கும் 100% கட்டாயக் காப்பீடு.', 'Smart Keytag மற்றும் Smart Card மூலம் ஒரு சிப் நுட்பத்தில் காப்பீடு விவரங்கள் இணைக்கப்படும்.', 'Fine Free Tamil Nadu என்னும் இலக்கை அடைய வாகன பாதுகாப்பு மற்றும் சட்டத்தை உறுதி செய்தல்.'],
+      h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.'
+    }
+  },
+  en: {
+    1: {
+      ico: '💳', t: 'Emergency Fund for Women', amt: '₹24,000 – ₹48,000',
+      p: ['Applicable to housewives, students, and other government fund beneficiaries.', 'Use your authorized Smart Card like a credit card for immediate emergency financial needs.', 'A 100% secure fund delivery system implemented via the Bonds & Binding method.'],
+      h: 'A world-class financial initiative executed in partnership with bank governing boards.'
+    },
+    2: {
+      ico: '🚗', t: 'Free Driving Licence Scheme', amt: 'Effective from 2026',
+      p: ['Government-funded basic driving licences for all Tamil Nadu youth.', 'Legal amendment to grant MCWG licences to youth straight after age 16.', 'Exemption from spot fines for youth who strictly follow traffic regulations.'],
+      h: 'Building a disciplined and safe driving community for the next generation.'
+    },
+    3: {
+      ico: '🌿', t: 'Free Emission Test Scheme', amt: '100% Free',
+      p: ['Free vehicle emission testing for all vehicle types at government expense.', 'Modern technology to detect carbon emissions and protect our environment.', 'A pioneering green initiative prioritizing public health and natural resources.'],
+      h: 'A major effort to keep our environment clean and breathable for everyone.'
+    },
+    4: {
+      ico: '🍽️', t: 'Senior Citizens Food Scheme', amt: 'Quality Assured',
+      p: ['Senior citizens can dine at government-approved restaurants near their homes.', 'One nutritious and quality meal per day provided free via Smart Card.', 'Ensuring an honorable livelihood where elders do not have to depend on others.'],
+      h: 'Our duty is to eliminate hunger among elders and protect their dignity.'
+    },
+    5: {
+      ico: '🛣️', t: 'Free Tag — Toll Exemption', amt: 'Zero Toll Travel',
+      p: ['Full toll exemption for medical emergencies and transport of agricultural goods.', 'Toll-free travel for the general public during holidays and major festivals.', 'A specialized tech-driven system that goes beyond standard FASTag protocols.'],
+      h: 'A revolutionary move to remove travel barriers and reduce economic burdens.'
+    },
+    6: {
+      ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries',
+      p: ['100% mandatory insurance coverage for all 1.20 crore two-wheeler owners in TN.', 'Insurance details integrated into a Smart Keytag and Smart Card chip.', 'Ensuring vehicle safety and legal compliance to achieve a "Fine Free Tamil Nadu".'],
+      h: 'Securing the safety of two-wheeler riders with immediate assistance during accidents.'
     }
   }
-  rafId = requestAnimationFrame(tick);
+};
+
+/* ── LOGIC ── */
+function showScheme(id) {
+  const data = SCHEME_DATA[curLang][id];
+  const container = document.getElementById('schemeDetail');
+  if (!container) return;
+
+  // Sidebar UI
+  document.querySelectorAll('.sb-item').forEach(el => el.classList.remove('active'));
+  const activeItem = document.getElementById('sbi-' + id);
+  if (activeItem) activeItem.classList.add('active');
+
+  const pointsHtml = data.p.map(txt => `<li>${txt}</li>`).join('');
+  
+  container.style.opacity = '0';
+  setTimeout(() => {
+    container.innerHTML = `
+      <div class="sd-head">
+        <div class="sd-icon">${data.ico}</div>
+        <div class="sd-info">
+          <div class="sd-num">${curLang === 'ta' ? 'திட்டம்' : 'SCHEME'} 0${id}</div>
+          <h3 class="sd-title">${data.t}</h3>
+          <div class="sd-sub">${curLang === 'ta' ? 'அதிகாரப்பூர்வ கொள்கை' : 'Official Governance Policy'}</div>
+        </div>
+      </div>
+      
+      <div class="sd-meta">
+        <div class="sd-amt-box">
+          <div class="sd-albl">${curLang === 'ta' ? 'திட்ட நிதி / மதிப்பு' : 'SCHEME FUND / VALUE'}</div>
+          <div class="sd-amt">${data.amt}</div>
+        </div>
+        <div class="sd-badge">${curLang === 'ta' ? '2026 தேர்தல் வாக்குறுதி' : '2026 ELECTION PLEDGE'}</div>
+      </div>
+
+      <ul class="sd-points">${pointsHtml}</ul>
+
+      <div class="sd-highlight">
+        <div class="sd-hl-ico">⚡</div>
+        <div class="sd-hl-txt">${data.h}</div>
+      </div>
+    `;
+    container.style.opacity = '1';
+  }, 100);
+
+  speak(`${data.t}. ${data.p.join('. ')}`);
 }
 
-function stopTimer() {
-  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-  document.getElementById('timer-fill').style.width = '0%';
-}
-
-function autoAdvance() {
-  const cnt = itemCounts[curSlide];
-  const cur = itemIdx[curSlide];
-  if (cur < cnt - 1) {
-    showItem(curSlide, cur + 1);
-  } else if (curSlide < TOTAL - 1) {
-    goSlide(curSlide + 1);
-  }
-  // Last slide, last item: stop (don't loop)
-}
-
-/* ── ITEM DISPLAY ── */
-function showItem(sIdx, iIdx) {
-  const track = document.getElementById('it' + sIdx);
-  const h = window.innerHeight - 70;
-  track.style.transform = `translateY(-${iIdx * h}px)`;
-  itemIdx[sIdx] = iIdx;
-  // Mark visible item
-  document.querySelectorAll('#s' + sIdx + ' .item').forEach((el, i) =>
-    el.classList.toggle('visible', i === iIdx)
-  );
-  buildDots(sIdx);
-  speakCurrent();
-  startTimer();
-}
-
-/* ── SLIDE NAVIGATION ── */
-function goSlide(idx) {
-  if (isAnim || idx === curSlide || idx < 0 || idx >= TOTAL) return;
-  isAnim = true;
-  stopTimer();
-  curSlide = idx;
-  itemIdx[idx] = 0;
-  document.getElementById('sc').style.transform = `translateX(-${curSlide * 100}vw)`;
-  updateNav();
-  setTimeout(() => { showItem(curSlide, 0); isAnim = false; }, 950);
-}
-
-function manualNext() {
-  const cnt = itemCounts[curSlide];
-  const cur = itemIdx[curSlide];
-  if (cur < cnt - 1) { showItem(curSlide, cur + 1); } else { goSlide(curSlide + 1); }
-}
-
-function manualPrev() {
-  const cur = itemIdx[curSlide];
-  if (cur > 0) { showItem(curSlide, cur - 1); } else { goSlide(curSlide - 1); }
-}
-
-function updateNav() {
-  document.querySelectorAll('.nl').forEach((l, i) => l.classList.toggle('act', i === curSlide));
-  // FIX: itemIdx[curSlide] may be 0 on slide change before showItem runs — safe because we reset it above
-  document.getElementById('prevBtn').disabled = curSlide === 0 && itemIdx[curSlide] === 0;
-  document.getElementById('nextBtn').disabled = curSlide === TOTAL - 1 && itemIdx[curSlide] === itemCounts[curSlide] - 1;
-  document.getElementById('curNum').textContent = String(curSlide + 1).padStart(2, '0');
-  document.getElementById('prog').style.width = `${((curSlide + 1) / TOTAL) * 100}%`;
-}
-
-/* ── DOTS ── */
-function buildDots(sIdx) {
-  const c = document.getElementById('idots');
-  c.innerHTML = '';
-  for (let i = 0; i < itemCounts[sIdx]; i++) {
-    const d = document.createElement('div');
-    d.className = 'idot' + (i === itemIdx[sIdx] ? ' act' : '');
-    d.onclick = () => showItem(sIdx, i);
-    c.appendChild(d);
-  }
-}
-
-/* ── LANGUAGE SWITCHER ── */
 function setLang(lang) {
   curLang = lang;
-  document.querySelectorAll('.lb').forEach(b =>
+  document.querySelectorAll('.lb').forEach(b => 
     b.classList.toggle('act', b.textContent.trim() === (lang === 'en' ? 'EN' : 'தமிழ்'))
   );
-  const d = TX[lang];
-  Object.entries(d).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = val;
-  });
-  document.querySelectorAll('.nl').forEach(el =>
-    el.textContent = el.getAttribute(lang === 'en' ? 'data-en' : 'data-ta')
-  );
-  speakCurrent();
+  
+  // Update sidebar text
+  for (let i = 1; i <= 6; i++) {
+    const el = document.querySelector(`#sbi-${i} .sbi-txt`);
+    if (el) el.textContent = SCHEME_DATA[lang][i].t;
+  }
+  
+  // Refresh detail
+  const active = document.querySelector('.sb-item.active');
+  const id = active ? active.id.replace('sbi-', '') : 1;
+  showScheme(id);
 }
 
-/* ── KEYBOARD NAVIGATION ── */
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') manualNext();
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') manualPrev();
-});
-
-/* ── TOUCH / SWIPE NAVIGATION ── */
-let tx0 = 0, ty0 = 0;
-document.addEventListener('touchstart', e => {
-  tx0 = e.changedTouches[0].screenX;
-  ty0 = e.changedTouches[0].screenY;
-}, { passive: true });
-
-document.addEventListener('touchend', e => {
-  const dx = tx0 - e.changedTouches[0].screenX;
-  const dy = ty0 - e.changedTouches[0].screenY;
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-    dx > 0 ? manualNext() : manualPrev();
-  } else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 40) {
-    dy > 0 ? manualNext() : manualPrev();
-  }
-});
-
 /* ── CUSTOM CURSOR ── */
-// FIX: Use direct style property assignment instead of cssText += to avoid
-// continuously growing inline style strings on each animation frame.
 const CUR_DOT = document.getElementById('cur');
 const CUR_RING = document.getElementById('cur-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -328,7 +192,7 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; })
   requestAnimationFrame(loop);
 })();
 
-document.querySelectorAll('button, .nl, .idot, .pillar, .ach-card, .tcard, .sbtn').forEach(el => {
+document.querySelectorAll('button, .sb-item').forEach(el => {
   el.addEventListener('mouseenter', () => {
     CUR_DOT.style.transform = 'scale(2)';
     CUR_RING.style.transform = 'scale(1.5)';
@@ -339,41 +203,24 @@ document.querySelectorAll('button, .nl, .idot, .pillar, .ach-card, .tcard, .sbtn
   });
 });
 
-/* ── FORM HANDLER ── */
-function handleForm() {
-  const msg = curLang === 'ta'
-    ? 'நன்றி! நீங்கள் வெற்றிகரமாக பதிவு செய்யப்பட்டீர்கள் 🎉'
-    : 'Thank you! You have been registered successfully 🎉';
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
 /* ── INIT ── */
 window.addEventListener('load', () => {
-  // Hide loader after 1.8s
   setTimeout(() => {
     const l = document.getElementById('loader');
     l.style.transition = 'opacity .7s';
     l.style.opacity = '0';
     setTimeout(() => l.style.display = 'none', 700);
-  }, 1800);
+  }, 1200);
 
-  // Start after loader animation
   setTimeout(() => {
-    updateNav();
-    showItem(0, 0);
-    buildDots(0);
-    // Wait for voices to be loaded before speaking
-    const go = () => setTimeout(speakCurrent, 400);
-    if (window.speechSynthesis.getVoices().length > 0) {
-      go();
-    } else {
-      window.speechSynthesis.onvoiceschanged = go;
-    }
-  }, 2000);
+    setLang('ta');
+    showScheme(1);
+    
+    const go = () => setTimeout(() => speak(SCHEME_DATA['ta'][1].t), 400);
+    if (window.speechSynthesis.getVoices().length > 0) go();
+    else window.speechSynthesis.onvoiceschanged = go;
+  }, 1500);
 });
 
-// Disable right-click context menu
+// Disable right-click
 document.addEventListener('contextmenu', e => e.preventDefault());
