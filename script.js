@@ -23,18 +23,29 @@ const TX = {
 function speak(txt) {
   if (isMuted) return;
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(txt);
-  u.lang = curLang === 'ta' ? 'ta-IN' : 'en-IN';
-  u.rate = 0.9; u.pitch = 1; u.volume = 0.9;
   
-  const vv = window.speechSynthesis.getVoices();
-  const preferred = vv.find(v => 
-    curLang === 'ta' 
-      ? v.lang.startsWith('ta') 
-      : (v.lang.startsWith('en') && v.name.toLowerCase().includes('female'))
-  );
-  if (preferred) u.voice = preferred;
-  window.speechSynthesis.speak(u);
+  const synth = window.speechSynthesis;
+  // Some browsers need a tiny delay to ensure voices are ready
+  setTimeout(() => {
+    const u = new SpeechSynthesisUtterance(txt);
+    u.lang = curLang === 'ta' ? 'ta-IN' : 'en-IN';
+    u.rate = 1.0; u.pitch = 1; u.volume = 1;
+    
+    const voices = synth.getVoices();
+    let preferred = null;
+
+    if (curLang === 'ta') {
+      // Find Tamil voice: check lang code or name
+      preferred = voices.find(v => v.lang.startsWith('ta') || v.name.toLowerCase().includes('tamil'));
+    } else {
+      // Find English female voice
+      preferred = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female')) 
+                  || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    if (preferred) u.voice = preferred;
+    synth.speak(u);
+  }, 50);
 }
 
 function toggleAudio() {
@@ -162,6 +173,11 @@ function showScheme(id) {
       </div>
     `;
     container.style.opacity = '1';
+    
+    // Auto-scroll to top on mobile for better "post" experience
+    if (window.innerWidth < 900) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, 100);
 
   speak(`${data.t}. ${data.p.join('. ')}`);
