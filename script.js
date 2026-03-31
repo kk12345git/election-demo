@@ -48,16 +48,19 @@ const SCHEME_DATA = {
   ta: {
     1: {
       ico: '💳', t: 'மகளிர் அவசர நிதி திட்டம்', amt: '₹24,000 – ₹48,000',
+      img: 'scheme1.Jpg',
       p: ['குடும்பத் தலைவிகள், மாணவர்கள் மற்றும் அரசு நிதி பெறும் பயனாளர்களுக்கு பொருந்தும்.', 'அங்கீகரிக்கப்பட்ட Smart Card மூலம் அவசரகால நிதித் தேவைகளுக்கு கிரெடிட் கார்டு போல பயன்படுத்தலாம்.', 'Bonds & Binding முறையில் 100% பாதுகாப்பான நிதி வழங்கும் திட்டம்.'],
       h: 'நிர்வாகக் குழு மற்றும் வங்கிகளுடன் இணைந்து செயல்படுத்தப்படும் உலகத் தரம் வாய்ந்த நிதித் திட்டம்.'
     },
     2: {
       ico: '🚗', t: 'இலவச ஓட்டுனர் உரிம திட்டம்', amt: '2026 முதல் அமல்',
+      img: 'scheme2.Jpg',
       p: ['தமிழக இளைஞர்களுக்கு அரசு செலவிலேயே அடிப்படை ஓட்டுனர் உரிமம் வழங்கப்படும்.', '16 வயது முடிந்தவுடன் MCWOG இலிருந்து MCWG ஆக சட்டத் திருத்தம் செய்து உரிமம் வழங்கப்படும்.', 'சாலை விதிகளைப் பின்பற்றும் இளைஞர்களுக்கு Spot fine முறையிலிருந்து விலக்கு அளிக்கப்படும்.'],
-      h: 'ஒழக்கமான மற்றும் பாதுகாப்பான ஓட்டுனர் சமூகத்தை உருவாக்குவதே எமது நோக்கம்.'
+      h: 'ஒழுக்கமான மற்றும் பாதுகாப்பான ஓட்டுனர் சமூகத்தை உருவாக்குவதே எமது நோக்கம்.'
     },
     3: {
       ico: '🌿', t: 'இலவச Emission Test திட்டம்', amt: '100% இலவசம்',
+      img: 'scheme3.Jpg',
       p: ['அனைத்து ரக வாகனங்களுக்கும் மாசு கட்டுப்பாட்டு சோதனை அரசு செலவிலேயே இலவசம்.', 'சுற்றுச்சூழலை மாசுபடுத்தும் கரிம வாயு வெளியேற்றத்தை கண்டறிந்து சரிசெய்யும் நவீன தொழில்நுட்பம்.', 'மக்களின் ஆரோக்கியம் மற்றும் இயற்கை வளத்தை காக்கும் முன்னோடி பசுமைத் திட்டம்.'],
       h: 'நமது சுற்றுப்புறத்தை தூய்மையாக வைத்திருக்க நாம் எடுக்கும் ஒரு பெரும் முயற்சி.'
     },
@@ -73,6 +76,7 @@ const SCHEME_DATA = {
     },
     6: {
       ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்',
+      img: 'scheme6.Jpg',
       p: ['தமிழகத்தில் உள்ள 1.20 கோடி இருசக்கர வாகன உரிமையாளர்களுக்கும் 100% கட்டாயக் காப்பீடு.', 'Smart Keytag மற்றும் Smart Card மூலம் ஒரு சிப் நுட்பத்தில் காப்பீடு விவரங்கள் இணைக்கப்படும்.', 'Fine Free Tamil Nadu என்னும் இலக்கை அடைய வாகன பாதுகாப்பு மற்றும் சட்டத்தை உறுதி செய்தல்.'],
       h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.'
     }
@@ -80,16 +84,19 @@ const SCHEME_DATA = {
   en: {
     1: {
       ico: '💳', t: 'Emergency Fund for Women', amt: '₹24,000 – ₹48,000',
+      img: 'scheme1.Jpg',
       p: ['Applicable to housewives, students, and other government fund beneficiaries.', 'Use your authorized Smart Card like a credit card for immediate emergency financial needs.', 'A 100% secure fund delivery system implemented via the Bonds & Binding method.'],
       h: 'A world-class financial initiative executed in partnership with bank governing boards.'
     },
     2: {
       ico: '🚗', t: 'Free Driving Licence Scheme', amt: 'Effective from 2026',
+      img: 'scheme2.Jpg',
       p: ['Government-funded basic driving licences for all Tamil Nadu youth.', 'Legal amendment to grant MCWG licences to youth straight after age 16.', 'Exemption from spot fines for youth who strictly follow traffic regulations.'],
       h: 'Building a disciplined and safe driving community for the next generation.'
     },
     3: {
       ico: '🌿', t: 'Free Emission Test Scheme', amt: '100% Free',
+      img: 'scheme3.Jpg',
       p: ['Free vehicle emission testing for all vehicle types at government expense.', 'Modern technology to detect carbon emissions and protect our environment.', 'A pioneering green initiative prioritizing public health and natural resources.'],
       h: 'A major effort to keep our environment clean and breathable for everyone.'
     },
@@ -105,6 +112,7 @@ const SCHEME_DATA = {
     },
     6: {
       ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries',
+      img: 'scheme6.jpg',
       p: ['100% mandatory insurance coverage for all 1.20 crore two-wheeler owners in TN.', 'Insurance details integrated into a Smart Keytag and Smart Card chip.', 'Ensuring vehicle safety and legal compliance to achieve a "Fine Free Tamil Nadu".'],
       h: 'Securing the safety of two-wheeler riders with immediate assistance during accidents.'
     }
@@ -123,10 +131,12 @@ function showScheme(id) {
   if (activeItem) activeItem.classList.add('active');
 
   const pointsHtml = data.p.map(txt => `<li>${txt}</li>`).join('');
+  const bannerHtml = data.img ? `<img src="${data.img}" class="sd-banner" alt="Banner">` : '';
   
   container.style.opacity = '0';
   setTimeout(() => {
     container.innerHTML = `
+      ${bannerHtml}
       <div class="sd-head">
         <div class="sd-icon">${data.ico}</div>
         <div class="sd-info">

@@ -99,6 +99,12 @@ body {
   flex: 1; overflow-y: auto; padding: 60px 80px;
   scroll-behavior: smooth; transition: opacity .3s;
 }
+.sd-banner {
+  width: 100%; height: auto; border-radius: 8px;
+  margin-bottom: 40px; border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  display: block; object-fit: cover;
+}
 .sd-head { display: flex; align-items: flex-start; gap: 24px; padding-bottom: 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
 .sd-icon { font-size: 64px; line-height: 1; }
 .sd-num { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
