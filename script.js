@@ -55,11 +55,21 @@ function speak(txt, audioPath) {
   window.speechSynthesis.cancel();
   if (curAudio) {
     curAudio.pause();
+    curAudio.onended = null;
     curAudio = null;
   }
   
+  // Trigger next scheme 5s after voice ends
+  const onDone = () => {
+    setTimeout(() => {
+      const nextId = (currentSchemeId % 5) + 1;
+      transitionToScheme(nextId);
+    }, 5000);
+  };
+
   if (curLang === 'ta' && audioPath) {
     curAudio = new Audio(audioPath);
+    curAudio.onended = onDone;
     curAudio.play().catch(e => console.warn('Audio play blocked:', e));
     return;
   }
@@ -69,6 +79,7 @@ function speak(txt, audioPath) {
     const u = new SpeechSynthesisUtterance(txt);
     u.lang = curLang === 'ta' ? 'ta-IN' : 'en-IN';
     u.rate = 1.0; u.pitch = 1; u.volume = 1;
+    u.onend = onDone;
     
     const preferred = getBestVoice();
     if (preferred) u.voice = preferred;
@@ -102,14 +113,14 @@ const SCHEME_DATA = {
     1: { ico: '💳', t: 'மகளிர் அவசர நிதி திட்டம்', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', aud: 'woman credit card scheme.mpeg', p: 'மகளிர் ரூ.2000 மற்றும் ரூ.2500 நிதிக்கான அங்கீகரிக்கப்பட்ட ஸ்மார்ட் கார்டை வழக்கமான கிரெடிட் கார்டு (Credit Card) போலவே பயன்படுத்த முடியும். இதை வங்கி மற்றும் நிதி நிறுவனங்களில் "Bonds and Binding" முறையில் சமர்ப்பித்து, உங்களின் அவசர காலத் தேவைகளுக்கான நிதியாகப் பெற்றுக்கொள்ளலாம். இச்சலுகையானது மாதம் ஆயிரம் ரூபாய் நிதி பெறும் மாணவர்கள் மற்றும் பிற அரசு நலத்திட்டப் பயனாளர்களுக்கும் முழுமையாகப் பொருந்தும்.', h: 'பெண்களின் அவசரத் தேவைகளுக்காக வங்கிகளுடன் இணைந்து செயல்படுத்தப்படும் சிறப்பு நிதித் திட்டம்.' },
     2: { ico: '🚗', t: 'இலவச ஓட்டுனர் உரிம திட்டம்', amt: '2026 முதல் அமல்', img: 'scheme2.Jpg', aud: 'free driving license scheme.mpeg', p: 'தமிழகத்தில் 10-ஆம் வகுப்பு முதல் 17+ வயது வரையிலான சுமார் 67% இளைஞர்களுக்கு வாகனம் ஓட்டத் தெரியும். அவர்களின் நலன் கருதி அரசு தரப்பிலிருந்து கட்டணமின்றி ஓட்டுனர் உரிமம் (Driving Licence) வழங்கப்படும். அத்துடன் 16+ வயதுடையவர்களுக்கு MCWOG பிரிவில் இருந்து MCWG பிரிவிற்கு உரிமம் வழங்க மத்திய அரசிற்கு பரிந்துரை செய்யப்படும். இது "Fine Free Tamil Nadu" என்ற இலக்கை நோக்கிய ஒரு முக்கியமான நகர்வாகும்.', h: 'தலைவரின் பெயரைச் சொல்லி 20 ஆண்டுகாலம் பேசப்படும் வகையில் சரித்திரம் படைக்கப்போகும் எதிர்காலத் திட்டம்.' },
     3: { ico: '🍽️', t: 'மூத்த குடிமக்கள் உணவு திட்டம்', amt: 'தரமான உணவு உறுதி', aud: 'senior citizen free food scheme.mpeg', p: 'மூத்த குடிமக்கள் தங்கள் ஊரிலே உள்ள அங்கீகரிக்கப்பட்ட உணவகங்களில் ஒருவேளை உணவை முற்றிலும் இலவசமாகப் பெற்றுக் கொள்ளலாம். உணவின் தரம் மற்றும் சுகாதாரம் அரசால் நேரடியாக உறுதி செய்யப்படுவதால் முதியவர்களின் ஆரோக்கியம் மேம்படும். நம் சமூகத்தின் சொத்தான முதியவர்கள் கண்ணியத்துடனும், முழு பாதுகாப்புடனும் வாழ்வதை இத்திட்டம் உறுதி செய்கிறது.', h: 'முதியவர்களின் பசி போக்கி, அவர்களின் கண்ணியத்தைப் பாதுகாப்பது எமது தலையாய கடமை.' },
-    4: { ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்', img: 'scheme6.Jpg', p: 'டிஜிட்டல் தொழில்நுட்பத்துடன் கூடிய (Smart Keytag) and சிறப்பு (Smart Card) மூலம் சுமார் 1.20 கோடி இருசக்கர வாகனங்களுக்கு 100% காப்பீடு உறுதி செய்யப்படும். "Micro Level" கண்காணிப்பு முறை மூலம் குற்றச் செயல்கள் கட்டுப்படுத்தப்பட்டு ஓட்டுனர்களின் பாதுகாப்பும் பேணப்படும். "Fine Free Tamil Nadu" என்ற புதிய மாற்றத்தின் மூலம் பொதுமக்களுக்கும் போக்குவரத்து காவல்துறைக்கும் இடையிலான உறவு சுமூகமாக்கப்படும்.', h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.' },
+    4: { ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்', img: 'scheme4.jpeg', p: 'டிஜிட்டல் தொழில்நுட்பத்துடன் கூடிய (Smart Keytag) and சிறப்பு (Smart Card) மூலம் சுமார் 1.20 கோடி இருசக்கர வாகனங்களுக்கு 100% காப்பீடு உறுதி செய்யப்படும். "Micro Level" கண்காணிப்பு முறை மூலம் குற்றச் செயல்கள் கட்டுப்படுத்தப்பட்டு ஓட்டுனர்களின் பாதுகாப்பும் பேணப்படும். "Fine Free Tamil Nadu" என்ற புதிய மாற்றத்தின் மூலம் பொதுமக்களுக்கும் போக்குவரத்து காவல்துறைக்கும் இடையிலான உறவு சுமூகமாக்கப்படும்.', h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.' },
     5: { ico: '🛣️', t: 'Free Tag — சுங்க விலக்கு திட்டம்', amt: 'சுங்கவரி இல்லா பயணம்', img: 'scheme5.jpeg', aud: 'free tag scheme.mpeg', p: 'மருத்துவ அவசர காலத் தேவைகள் மற்றும் விவசாயப் பெருங்குடி மக்கள் தங்களின் விளைபொருட்களை ஏற்றிச் செல்லும் போது சுங்கவரி செலுத்தத் தேவையில்லை. மேலும் விடுமுறை நாட்கள் மற்றும் முக்கிய திருவிழாக்களின் போது சொந்த ஊர் செல்லும் பொதுமக்களுக்கும் சுங்கவரி விலக்கு அளிக்கப்படும். இது "Fast Tag" முறையை விட மேலான, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் ஒரு வரப்பிரசாதமாகும்.', h: 'பயணத் தடைகளை நீக்கி, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் புரட்சிகர முயற்சி.' }
   },
   en: {
     1: { ico: '💳', t: 'Womens Emergency Fund', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: 'Use your authorized ₹2,000 / ₹2,500 monthly benefit Smart Card like a standard Credit Card for your daily and urgent needs. You can access emergency funds up to ₹48,000 via the specialized Bonds and Binding system at participating banks. This feature is also available for students receiving scholarships and all other government welfare beneficiaries.', h: 'A unique financial initiative to support women in emergency situations via banking partnerships.' },
     2: { ico: '🚗', t: 'Free Driving Licence Scheme', amt: 'Effective from 2026', img: 'scheme2.Jpg', p: 'We will provide government-funded driving licences for youth aged 17+ who have completed their 10th standard. As part of this initiative, we will advocate for a legal amendment with the Central Government to upgrade 16+ MCWOG licenses to MCWG. This program aims to create a law-abiding community and build a "Fine-free Tamil Nadu" for the next generation.', h: 'Securing the future of our youth while reducing the financial burden on parents.' },
     3: { ico: '🍽️', t: 'Elderly Nutrition Program', amt: 'Quality Assured', p: 'Senior citizens can now enjoy one nutritious meal per day for free at authorized local restaurants in their neighborhood. The government will strictly monitor food quality and hygiene to ensure the health and well-being of our elders. This program guarantees an honorable livelihood where senior citizens can live with dignity and social security.', h: 'Our primary duty is to eliminate hunger among elders and protect their dignity.' },
-    4: { ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries', img: 'scheme6.Jpg', p: 'Nearly 1.20 crore two-wheeler riders will receive 100% insurance coverage integrated into digital Smart Keytags and specialized Smart Cards. Through micro-level monitoring, we will effectively control crime and ensure the safety of all riders on the road. This initiative fosters a free and easy relationship between the public and traffic authorities.', h: 'Ensuring rider safety and legal compliance via the New Independence Scheme.' },
+    4: { ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries', img: 'scheme4.jpeg', p: 'Nearly 1.20 crore two-wheeler riders will receive 100% insurance coverage integrated into digital Smart Keytags and specialized Smart Cards. Through micro-level monitoring, we will effectively control crime and ensure the safety of all riders on the road. This initiative fosters a free and easy relationship between the public and traffic authorities.', h: 'Ensuring rider safety and legal compliance via the New Independence Scheme.' },
     5: { ico: '🛣️', t: 'Free Tag — Toll Exemption', amt: 'Zero Toll Travel', img: 'scheme5.jpeg', p: 'We are providing full toll exemption for medical emergencies and the transportation of agricultural goods to support our farming community. Furthermore, toll-free travel will be extended to the general public during major holidays and festival periods. This system is designed as a superior alternative to Fast Tag, focused entirely on reducing the economic burden on citizens.', h: 'A revolutionary move to remove travel barriers and assist our farming community.' }
   }
 };
@@ -181,14 +192,16 @@ function showScheme(id, fromManual = false) {
 
 /** Auto-Scroll Logic */
 function initAutoCycle() {
-  autoTimer = setInterval(() => {
-    let nextId = (currentSchemeId % 5) + 1;
+  if (autoTimer) clearTimeout(autoTimer);
+  // Fallback timer: 60s
+  autoTimer = setTimeout(() => {
+    const nextId = (currentSchemeId % 5) + 1;
     transitionToScheme(nextId);
-  }, 37000); // 37s + 3s transition = 40s Total
+  }, 60000);
 }
 
 function resetAutoCycle() {
-  clearInterval(autoTimer);
+  if (autoTimer) clearTimeout(autoTimer);
   initAutoCycle();
 }
 
