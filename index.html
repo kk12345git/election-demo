@@ -1,103 +1,111 @@
 <!DOCTYPE html>
 <html lang="ta">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="மக்கள் குரல் — சிறப்பு நலத் திட்டங்கள்.">
+  <meta name="description" content="D AIO 2026">
   <title>நலத் திட்டங்கள் — மக்கள் குரல்</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<!-- STANDARD CURSOR RESTORED -->
+  <!-- STANDARD CURSOR RESTORED -->
 
-<!-- LOADER -->
-<div id="loader">
-  <img src="logo.png" alt="Logo" class="loader-logo">
-  <div class="l-bar"><div class="l-fill"></div></div>
-  <div class="l-txt">சிறப்பு திட்டங்கள்...</div>
-</div>
-
-<!-- AUDIO PROMPT -->
-<div id="audioPrompt" class="audio-prompt">
-  <div class="ap-icon">🔊</div>
-  <div class="ap-txt">ஆடியோவை இயக்க இங்கே கிளிக் செய்க / Click to enable audio</div>
-</div>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-logo">
-    <img src="logo.png" alt="Logo" id="logo">
-  </div>
-  <div class="nav-r">
-    <div class="lang-box">
-      <button class="lb" onclick="setLang('en')">EN</button>
-      <button class="lb act" onclick="setLang('ta')">தமிழ்</button>
+  <!-- LOADER -->
+  <div id="loader">
+    <img src="logo.png" alt="Logo" class="loader-logo">
+    <div class="l-bar">
+      <div class="l-fill"></div>
     </div>
-    <button class="aud-btn" id="audBtn" onclick="toggleAudio()">🔊</button>
+    <div class="l-txt">சிறப்பு திட்டங்கள்...</div>
   </div>
-</nav>
 
-<!-- MAIN CONTENT -->
-<main id="main-content">
-  <div class="scheme-wrapper">
+  <!-- AUDIO PROMPT -->
+  <div id="audioPrompt" class="audio-prompt">
+    <div class="ap-icon">🔊</div>
+    <div class="ap-txt">ஆடியோவை இயக்க இங்கே கிளிக் செய்க / Click to enable audio</div>
+  </div>
 
-    <!-- Sidebar Nav -->
-    <div class="scheme-sidebar">
-      <div class="sb-top">
-        <div class="sb-flag">நலத் திட்டங்கள்</div>
-        <div class="sb-heading">சிறப்பு திட்டங்கள்</div>
-        <div class="sb-count">கிளிக் செய்து முழு விவரம் காணுங்கள்</div>
-      </div>
-      <nav class="sb-nav">
-        <div class="sb-item active" id="sbi-1" onclick="showScheme(1, true)">
-          <div class="sbi-num">01</div>
-          <div class="sbi-txt">மகளிர் அவசர நிதி திட்டம்</div>
-          <span class="sbi-arr">›</span>
-        </div>
-        <div class="sb-item" id="sbi-2" onclick="showScheme(2, true)">
-          <div class="sbi-num">02</div>
-          <div class="sbi-txt">இலவச ஓட்டுனர் உரிம திட்டம்</div>
-          <span class="sbi-arr">›</span>
-        </div>
-        <div class="sb-item" id="sbi-3" onclick="showScheme(3, true)">
-          <div class="sbi-num">03</div>
-          <div class="sbi-txt">சுற்றுச்சூழல் பாதுகாப்பு — Emission Test</div>
-          <span class="sbi-arr">›</span>
-        </div>
-        <div class="sb-item" id="sbi-4" onclick="showScheme(4, true)">
-          <div class="sbi-num">04</div>
-          <div class="sbi-txt">மூத்த குடிமக்கள் உணவு திட்டம்</div>
-          <span class="sbi-arr">›</span>
-        </div>
-        <div class="sb-item" id="sbi-5" onclick="showScheme(5, true)">
-          <div class="sbi-num">05</div>
-          <div class="sbi-txt">இருசக்கர வாகன காப்பீடு திட்டம்</div>
-          <span class="sbi-arr">›</span>
-        </div>
-        <div class="sb-item" id="sbi-6" onclick="showScheme(6, true)">
-          <div class="sbi-num">06</div>
-          <div class="sbi-txt">Free Tag — சுங்க விலக்கு திட்டம்</div>
-          <span class="sbi-arr">›</span>
-        </div>
-      </nav>
-      <div class="sb-foot">
-        <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:12px;text-align:center">எங்களுடன் இணையுங்கள்</div>
-        <div class="social-mini">
-          <a href="#">𝕏</a><a href="#">📘</a><a href="#">📷</a><a href="#">▶️</a><a href="#">💬</a>
-        </div>
-      </div>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Logo" id="logo">
     </div>
+    <div class="nav-r">
+      <div class="lang-box">
+        <button class="lb" onclick="setLang('en')">EN</button>
+        <button class="lb act" onclick="setLang('ta')">தமிழ்</button>
+      </div>
+      <button class="aud-btn" id="audBtn" onclick="toggleAudio()">🔊</button>
+    </div>
+  </nav>
 
-    <!-- Detail Panel -->
-    <div class="scheme-detail" id="schemeDetail"></div>
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <div class="scheme-wrapper">
 
-  </div>
-</main>
+      <!-- Sidebar Nav -->
+      <div class="scheme-sidebar">
+        <div class="sb-top">
+          <div class="sb-flag">நலத் திட்டங்கள்</div>
+          <div class="sb-heading">சிறப்பு திட்டங்கள்</div>
+          <div class="sb-count">கிளிக் செய்து முழு விவரம் காணுங்கள்</div>
+        </div>
+        <nav class="sb-nav">
+          <div class="sb-item active" id="sbi-1" onclick="showScheme(1, true)">
+            <div class="sbi-num">01</div>
+            <div class="sbi-txt">மகளிர் அவசர நிதி திட்டம்</div>
+            <span class="sbi-arr">›</span>
+          </div>
+          <div class="sb-item" id="sbi-2" onclick="showScheme(2, true)">
+            <div class="sbi-num">02</div>
+            <div class="sbi-txt">இலவச ஓட்டுனர் உரிம திட்டம்</div>
+            <span class="sbi-arr">›</span>
+          </div>
+          <div class="sb-item" id="sbi-3" onclick="showScheme(3, true)">
+            <div class="sbi-num">03</div>
+            <div class="sbi-txt">சுற்றுச்சூழல் பாதுகாப்பு — Emission Test</div>
+            <span class="sbi-arr">›</span>
+          </div>
+          <div class="sb-item" id="sbi-4" onclick="showScheme(4, true)">
+            <div class="sbi-num">04</div>
+            <div class="sbi-txt">மூத்த குடிமக்கள் உணவு திட்டம்</div>
+            <span class="sbi-arr">›</span>
+          </div>
+          <div class="sb-item" id="sbi-5" onclick="showScheme(5, true)">
+            <div class="sbi-num">05</div>
+            <div class="sbi-txt">இருசக்கர வாகன காப்பீடு திட்டம்</div>
+            <span class="sbi-arr">›</span>
+          </div>
+          <div class="sb-item" id="sbi-6" onclick="showScheme(6, true)">
+            <div class="sbi-num">06</div>
+            <div class="sbi-txt">Free Tag — சுங்க விலக்கு திட்டம்</div>
+            <span class="sbi-arr">›</span>
+          </div>
+        </nav>
+        <div class="sb-foot">
+          <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:12px;text-align:center">எங்களுடன்
+            இணையுங்கள்</div>
+          <div class="social-mini">
+            <a href="#">𝕏</a><a href="#">📘</a><a href="#">📷</a><a href="#">▶️</a><a href="#">💬</a>
+          </div>
+        </div>
+      </div>
 
-<div class="toast" id="toast"></div>
+      <!-- Detail Panel -->
+      <div class="scheme-detail" id="schemeDetail"></div>
 
-<script src="script.js"></script>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
