@@ -353,10 +353,27 @@ body {
   inset: 0;
   background: var(--navy);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 30px;
   z-index: 2000;
   animation: brand-reveal 1.5s ease-out;
+}
+.closing-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.9);
+  max-width: 90%;
+  margin: 0;
+  animation: fadeInDown 1.2s ease-out;
+}
+@media (max-width: 900px) {
+  .closing-title { font-size: 1.8rem; letter-spacing: 2px; }
 }
 .closing-view img {
   max-width: 90vw;
