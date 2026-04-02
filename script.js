@@ -53,29 +53,35 @@ function getBestVoice() {
 function speak(txt, audioPath) {
   if (isMuted) return;
   
-  // Stop ongoing synthesis
+  // Clear any existing synth/audio activity
   window.speechSynthesis.cancel();
-  
-  // Stop ongoing audio files
   if (curAudio) {
     curAudio.pause();
     curAudio.onended = null;
     curAudio = null;
   }
   
+  // onDone strictly handles transition to the NEXT scheme
   const onDone = () => {
+    if (isMuted) return;
     if (autoTimer) clearTimeout(autoTimer);
-    // Audio finished - wait 1.5 seconds then show the next loading screen
-    setTimeout(transitionToNextAuto, 1500);
+    // Audio finished - wait 2 seconds then transition to next scheme
+    autoTimer = setTimeout(transitionToNextAuto, 2000);
   };
 
   if (audioPath) {
     curAudio = new Audio(audioPath);
     curAudio.onended = onDone;
     curAudio.play().catch(e => {
-        console.warn('Audio play blocked or missing:', e);
-        // Fallback to synth if audio file fails
-        onDone();
+        console.warn('Audio play blocked or missing:', audioPath, e);
+        // CRITICAL: If blocked by browser (autoplay), do NOT call onDone.
+        // Calling onDone here is what causes the rapid skipping/looping.
+        if (e.name === 'NotAllowedError' || e.name === 'SecurityError') {
+            console.log('Playback blocked: Waiting for user interaction.');
+            return; 
+        }
+        // If it's a file error (404), maybe skip after a longer delay or try synth
+        setTimeout(onDone, 3000); 
     });
     return;
   }
@@ -234,7 +240,8 @@ function initAutoCycle() {
 
 function resetAutoCycle() {
   if (autoTimer) clearTimeout(autoTimer);
-  initAutoCycle();
+  // Default timeout if audio fails to report end: 3 minutes
+  autoTimer = setTimeout(transitionToNextAuto, 180000);
 }
 
 function setLang(lang) {
