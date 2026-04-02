@@ -130,13 +130,23 @@ body {
 .sd-albl { font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: rgba(245,240,232,.4); margin-bottom: 4px; }
 .sd-amt { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--accent); }
 .sd-badge { background: rgba(212,168,67,.06); border: 1px solid rgba(212,168,67,.2); padding: 12px 20px; font-size: 11px; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; border-radius: 4px; }
-.sd-points { list-style: none; margin-bottom: 34px; display: flex; flex-direction: column; gap: 12px; }
-.sd-points li {
-  display: flex; gap: 16px; align-items: flex-start; font-size: 15px; line-height: 1.7; color: rgba(245,240,232,.85);
-  padding: 16px 20px; background: rgba(255,255,255,.02); border: 1px solid var(--border); border-left: 4px solid rgba(196,30,58,.4); transition: .22s;
+.sd-content { 
+  margin-bottom: 34px; 
+  padding: 24px 30px;
+  background: rgba(255,255,255,.02); 
+  border: 1px solid var(--border); 
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  transition: .22s;
 }
-.sd-points li:hover { background: rgba(255,255,255,.05); border-left-color: var(--accent); color: #fff; }
-.sd-points li::before { content: '✓'; color: var(--accent); font-weight: 900; flex-shrink: 0; }
+.sd-content:hover { background: rgba(255,255,255,.04); }
+.sd-content p {
+  font-size: 17px; 
+  line-height: 1.8; 
+  color: rgba(245,240,232,.9);
+  font-family: 'Inter', sans-serif;
+  text-align: justify;
+}
 .sd-highlight { display: flex; align-items: flex-start; gap: 18px; padding: 24px 28px; background: linear-gradient(135deg, rgba(196,30,58,.12), rgba(212,168,67,.06)); border: 1px solid rgba(196,30,58,.35); border-left: 5px solid var(--accent); border-radius: 4px; }
 .sd-hl-ico { font-size: 28px; }
 .sd-hl-txt { font-size: 16px; line-height: 1.6; color: rgba(245,240,232,.95); font-style: italic; font-family: 'Playfair Display', serif; }
@@ -215,7 +225,8 @@ body {
   .sd-sub { text-align: center; font-size: 11px; }
   .sd-banner { border-radius: 8px; margin-bottom: 24px; }
   .sd-meta { justify-content: center; transform: scale(0.9); }
-  .sd-points li { font-size: 14px; padding: 14px 16px; }
+  .sd-content { padding: 18px 22px; }
+  .sd-content p { font-size: 15px; line-height: 1.65; text-align: left; }
 }
 /* ── AUDIO PROMPT ── */
 /* ── AUDIO PROMPT (PULSING) ── */
