@@ -346,3 +346,36 @@ body {
   .sd-brand-view { min-height: auto; padding: 30px 15px; }
   .brand-text { padding: 20px !important; }
 }
+
+/* ── CLOSING VIEW ── */
+.closing-view {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: brand-reveal 1.5s ease-out;
+}
+.closing-view img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 0;
+}
+
+/* Hide UI elements on closing */
+.is-closing .nav,
+.is-closing .scheme-sidebar,
+.is-closing .audio-prompt {
+  display: none !important;
+}
+.is-closing .scheme-detail {
+  padding: 0;
+  overflow: hidden;
+}

@@ -60,9 +60,9 @@ function speak(txt, audioPath) {
   }
   
   const onDone = () => {
-    // If branding slide (ID 7), wait a bit longer (10s) before cycling back to 1
-    const delay = currentSchemeId === 7 ? 10000 : 5000;
-    setTimeout(transitionToNextAuto, delay);
+    if (autoTimer) clearTimeout(autoTimer);
+    // Audio finished - show the next loading screen after 1 second
+    setTimeout(transitionToNextAuto, 1000);
   };
 
   if (curLang === 'ta' && audioPath) {
@@ -114,7 +114,7 @@ const SCHEME_DATA = {
     4: { ico: '🍽️', t: 'மூத்த குடிமக்கள் உணவு திட்டம்', amt: 'தரமான உணவு உறுதி', img: 'scheme4.jpeg', aud: 'senior citizen free food scheme.mpeg', p: 'மூத்த குடிமக்கள் தங்கள் ஊரிலே உள்ள அங்கீகரிக்கப்பட்ட உணவகங்களில் ஒருவேளை உணவை முற்றிலும் இலவசமாகப் பெற்றுக் கொள்ளலாம். உணவின் தரம் மற்றும் சுகாதாரம் அரசால் நேரடியாக உறுதி செய்யப்படுவதால் முதியவர்களின் ஆரோக்கியம் மேம்படும். நம் சமூகத்தின் சொத்தான முதியவர்கள் கண்ணியத்துடனும், முழு பாதுகாப்புடனும் வாழ்வதை இத்திட்டம் உறுதி செய்கிறது.', h: 'முதியவர்களின் பசி போக்கி, அவர்களின் கண்ணியத்தைப் பாதுகாப்பது எமது தலையாய கடமை.' },
     5: { ico: '摩托', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்', img: 'scheme6.Jpg', p: 'டிஜிட்டல் தொழில்நுட்பத்துடன் கூடிய (Smart Keytag) and சிறப்பு (Smart Card) மூலம் சுமார் 1.20 கோடி இருசக்கர வாகனங்களுக்கு 100% காப்பீடு உறுதி செய்யப்படும். "Micro Level" கண்காணிப்பு முறை மூலம் குற்றச் செயல்கள் கட்டுப்படுத்தப்பட்டு ஓட்டுனர்களின் பாதுகாப்பும் பேணப்படும். "Fine Free Tamil Nadu" என்ற புதிய மாற்றத்தின் மூலம் பொதுமக்களுக்கும் போக்குவரத்து காவல்துறைக்கும் இடையிலான உறவு சுமூகமாக்கப்படும்.', h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.' },
     6: { ico: '🛣️', t: 'Free Tag — சுங்க விலக்கு திட்டம்', amt: 'சுங்கவரி இல்லா பயணம்', img: 'scheme5.jpeg', aud: 'free tag scheme.mpeg', p: 'மருத்துவ அவசர காலத் தேவைகள் மற்றும் விவசாயப் பெருங்குடி மக்கள் தங்களின் விளைபொருட்களை ஏற்றிச் செல்லும் போது சுங்கவரி செலுத்தத் தேவையில்லை. மேலும் விடுமுறை நாட்கள் மற்றும் முக்கிய திருவிழாக்களின் போது சொந்த ஊர் செல்லும் பொதுமக்களுக்கும் சுங்கவரி விலக்கு அளிக்கப்படும். இது "Fast Tag" முறையை விட மேலான, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் ஒரு வரப்பிரசாதமாகும்.', h: 'பயணத் தடைகளை நீக்கி, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் புரட்சிகர முயற்சி.' },
-    7: { ico: '✨', t: 'மக்கள் குரல் — புதிய சுதந்திரம் 2026', amt: 'புதிய எதிர்காலம்', img: 'logo.png', p: 'புதிய தமிழகம் நோக்கிய பயணம் இப்போது தொடங்குகிறது. உங்களின் தேவைகள், உங்களின் உரிமை, எங்களின் இலக்கு. 2026-இல் நாம் இணைந்து ஒரு புதிய சரித்திரத்தை உருவாக்குவோம். மக்கள் குரல் எப்போதும் உங்களுடன். இது வெறும் வாக்குறுதி அல்ல, இது எமது லட்சியம். ஒரு புதிய சுதந்திரம் நோக்கி நாம் கைகோர்ப்போம்.', h: 'எப்போதும் மக்களுக்காக, எப்போதும் உங்களுக்காக — மக்கள் குரல்.' }
+    7: { ico: '✨', t: 'மக்கள் குரல் — புதிய சுதந்திரம் 2026', amt: 'புதிய எதிர்காலம்', img: 'closing image .jpeg', p: 'புதிய தமிழகம் நோக்கிய பயணம் இப்போது தொடங்குகிறது. உங்களின் தேவைகள், உங்களின் உரிமை, எங்களின் இலக்கு. 2026-இல் நாம் இணைந்து ஒரு புதிய சரித்திரத்தை உருவாக்குவோம். மக்கள் குரல் எப்போதும் உங்களுடன். இது வெறும் வாக்குறுதி அல்ல, இது எமது லட்சியம். ஒரு புதிய சுதந்திரம் நோக்கி நாம் கைகோர்ப்போம்.', h: 'எப்போதும் மக்களுக்காக, எப்போதும் உங்களுக்காக — மக்கள் குரல்.' }
   },
   en: {
     1: { ico: '💳', t: 'Womens Emergency Fund', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: 'Use your authorized ₹2,000 / ₹2,500 monthly benefit Smart Card like a standard Credit Card for your daily and urgent needs. You can access emergency funds up to ₹48,000 via the specialized Bonds and Binding system at participating banks. This feature is also available for students receiving scholarships and all other government welfare beneficiaries.', h: 'A unique financial initiative to support women in emergency situations via banking partnerships.' },
@@ -123,7 +123,7 @@ const SCHEME_DATA = {
     4: { ico: '🍽️', t: 'Elderly Nutrition Program', amt: 'Quality Assured', img: 'scheme4.jpeg', p: 'Senior citizens can now enjoy one nutritious meal per day for free at authorized local restaurants in their neighborhood. The government will strictly monitor food quality and hygiene to ensure the health and well-being of our elders. This program guarantees an honorable livelihood where senior citizens can live with dignity and social security.', h: 'Our primary duty is to eliminate hunger among elders and protect their dignity.' },
     5: { ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries', img: 'scheme6.Jpg', p: 'Nearly 1.20 crore two-wheeler riders will receive 100% insurance coverage integrated into digital Smart Keytags and specialized Smart Cards. Through micro-level monitoring, we will effectively control crime and ensure the safety of all riders on the road. This initiative fosters a free and easy relationship between the public and traffic authorities.', h: 'Ensuring rider safety and legal compliance via the New Independence Scheme.' },
     6: { ico: '🛣️', t: 'Free Tag — Toll Exemption', amt: 'Zero Toll Travel', img: 'scheme5.jpeg', p: 'We are providing full toll exemption for medical emergencies and the transportation of agricultural goods to support our farming community. Furthermore, toll-free travel will be extended to the general public during major holidays and festival periods. This system is designed as a superior alternative to Fast Tag, focused entirely on reducing the economic burden on citizens.', h: 'A revolutionary move to remove travel barriers and assist our farming community.' },
-    7: { ico: '✨', t: "The People's Voice — New Era 2026", amt: 'Foundation for Future', img: 'logo.png', p: 'A journey towards a better future begins here. Your needs, your rights, our goal. In 2026, together we will write a new chapter of prosperity. Our voice is your voice. This is not just a promise; it is our mission to build a state that cares for every citizen. Join us for a new era of progress.', h: 'Always for the people, always with you — The People\'s Voice.' }
+    7: { ico: '✨', t: "The People's Voice — New Era 2026", amt: 'Foundation for Future', img: 'closing image .jpeg', p: 'A journey towards a better future begins here. Your needs, your rights, our goal. In 2026, together we will write a new chapter of prosperity. Our voice is your voice. This is not just a promise; it is our mission to build a state that cares for every citizen. Join us for a new era of progress.', h: 'Always for the people, always with you — The People\'s Voice.' }
   }
 };
 
@@ -177,20 +177,13 @@ function showScheme(id, fromManual = false) {
   
   container.style.opacity = '0';
   setTimeout(() => {
+    // Toggle closing state class on body
+    document.body.classList.toggle('is-closing', isBrand);
+
     if (isBrand) {
       container.innerHTML = `
-        <div class="sd-brand-view">
+        <div class="sd-brand-view closing-view">
           ${bannerHtml}
-          <div class="sd-info brand-info">
-             <div class="sd-num brand-tagline">${curLang === 'ta' ? 'புதிய சுதந்திரம்' : 'A NEW FREEDOM'}</div>
-             <h3 class="sd-title brand-main-title">${data.t}</h3>
-          </div>
-          <div class="sd-content brand-text">
-            <p>${data.p}</p>
-          </div>
-          <div class="sd-highlight brand-highlight">
-            <div class="sd-hl-txt">${data.h}</div>
-          </div>
         </div>
       `;
     } else {
