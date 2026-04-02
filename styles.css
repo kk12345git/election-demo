@@ -218,42 +218,30 @@ body {
   .sd-points li { font-size: 14px; padding: 14px 16px; }
 }
 /* ── AUDIO PROMPT ── */
-.audio-prompt {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: rgba(196, 30, 58, 0.95);
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  z-index: 10001;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: ap-pulse 2s infinite, ap-slide-in 0.6s ease-out;
-  border: 1px solid rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-}
-.audio-prompt:hover {
-  transform: scale(1.05);
-  background: var(--accent);
-}
-.ap-icon { font-size: 20px; }
-.ap-txt { font-size: 13px; font-weight: 500; letter-spacing: 0.02em; }
+/* ── AUDIO PROMPT (PULSING) ── */
+.audio-prompt { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); padding: 12px 20px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; cursor: pointer; z-index: 1000; animation: ap-slide-in 0.8s ease-out, ap-pulse 2s infinite; box-shadow: 0 10px 30px rgba(0,0,0,0.4); opacity: 0.9; }
+.audio-prompt:hover { background: rgba(0, 0, 0, 0.9); transform: scale(1.05); opacity: 1; }
+.ap-ico { font-size: 20px; }
+.ap-txt { font-weight: 500; font-size: 0.9rem; }
+@keyframes ap-pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); } 70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,100,100,0); } }
+@keyframes ap-slide-in { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-@keyframes ap-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(196, 30, 58, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
+/* ── INTERSTITIAL STYLES (NEXT UP) ── */
+.sd-preview { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; text-align: center; animation: fadeIn 0.5s ease; width: 100%; max-width: 800px; margin: 0 auto; }
+.preview-label { font-size: 1.1rem; color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; opacity: 0.8; }
+.preview-title { font-size: 3rem; color: #fff; margin: 20px 0; line-height: 1.2; text-shadow: 0 5px 15px rgba(0,0,0,0.5); font-weight: 800; max-width: 90%; }
+.preview-banner { max-height: 250px; width: auto; object-fit: cover; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); filter: brightness(1.1); border: 2px solid rgba(255,255,255,0.1); }
+.preview-loader { width: 300px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.pl-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), #fff); border-radius: 10px; animation: pl-anim 3s linear forwards; }
+@keyframes pl-anim { from { width: 0; } to { width: 100%; } }
+
+@media (max-width: 900px) {
+  .preview-title { font-size: 2rem; }
+  .preview-banner { max-height: 180px; }
+  .sd-preview { min-height: 350px; }
 }
 
-@keyframes ap-slide-in {
-  from { transform: translateX(100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
 .audio-prompt.hide {
   transform: scale(0.8) translateX(100px);

@@ -82,25 +82,50 @@ function toggleAudio() {
 /* ── SCHEME DATA ── */
 const SCHEME_DATA = {
   ta: {
-    1: { ico: '💳', t: 'மகளிர் அவசர நிதி திட்டம்', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: ['குடும்பத் தலைவிகள், மாணவர்கள் மற்றும் அரசு நிதி பெறும் பயனாளர்களுக்கு பொருந்தும்.', 'அங்கீகரிக்கப்பட்ட Smart Card மூலம் அவசரகால நிதித் தேவைகளுக்கு கிரெடிட் கார்டு போல பயன்படுத்தலாம்.', 'Bonds & Binding முறையில் 100% பாதுகாப்பான நிதி வழங்கும் திட்டம்.'], h: 'நிர்வாகக் குழு மற்றும் வங்கிகளுடன் இணைந்து செயல்படுத்தப்படும் உலகத் தரம் வாய்ந்த நிதித் திட்டம்.' },
-    2: { ico: '🚗', t: 'இலவச ஓட்டுனர் உரிம திட்டம்', amt: '2026 முதல் அமல்', img: 'scheme2.Jpg', p: ['தமிழக இளைஞர்களுக்கு அரசு செலவிலேயே அடிப்படை ஓட்டுனர் உரிமம் வழங்கப்படும்.', '16 வயது முடிந்தவுடன் MCWOG இலிருந்து MCWG ஆக சட்டத் திருத்தம் செய்து உரிமம் வழங்கப்படும்.', 'சாலை விதிகளைப் பின்பற்றும் இளைஞர்களுக்கு Spot fine முறையிலிருந்து விலக்கு அளிக்கப்படும்.'], h: 'ஒழுக்கமான மற்றும் பாதுகாப்பான ஓட்டுனர் சமூகத்தை உருவாக்குவதே எமது நோக்கம்.' },
-    3: { ico: '🌿', t: 'இலவச Emission Test திட்டம்', amt: '100% இலவசம்', img: 'scheme3.Jpg', p: ['அனைத்து ரக வாகனங்களுக்கும் மாசு கட்டுப்பாட்டு சோதனை அரசு செலவிலேயே இலவசம்.', 'சுற்றுச்சூழலை மாசுபடுத்தும் கரிம வாயு வெளியேற்றத்தை கண்டறிந்து சரிசெய்யும் நவீன தொழில்நுட்பம்.', 'மக்களின் ஆரோக்கியம் மற்றும் இயற்கை வளத்தை காக்கும் முன்னோடி பசுமைத் திட்டம்.'], h: 'நமது சுற்றுப்புறத்தை தூய்மையாக வைத்திருக்க நாம் எடுக்கும் ஒரு பெரும் முயற்சி.' },
-    4: { ico: '🍽️', t: 'மூத்த குடிமக்கள் உணவு திட்டம்', amt: 'தரமான உணவு உறுதி', p: ['மூத்த குடிமக்களுக்கு அவர்கள் வசிப்பிடத்திற்கு அருகிலுள்ள அங்கீகரிக்கப்பட்ட உணவகங்களில் உணவு.', 'Smart Card மூலம் ஒரு வேளை தரமான மற்றும் சத்தான உணவு இலவசமாக வழங்கப்படும்.', 'முதியவர்கள் யாரையும் சார்ந்து இருக்கத் தேவையில்லாத கௌரவமான வாழ்வாதாரம்.'], h: 'முதியவர்களின் பசி போக்கி, அவர்களின் கண்ணியத்தைப் பாதுகாப்பது எமது கடமை.' },
-    5: { ico: '🛣️', t: 'Free Tag — சுங்க விலக்கு திட்டம்', amt: 'சுங்கவரி இல்லா பயணம்', p: ['மருத்துவ அவசரத் தேவைகள், விவசாயப் பொருட்கள் ஏற்றிச் செல்லும் வாகனங்களுக்கு முழு சுங்க விலக்கு.', 'விடுமுறை நாட்கள் மற்றும் முக்கிய திருவிழா காலங்களில் பொதுமக்களுக்கு சுங்கவரி கிடையாது.', 'FASTag முறையையும் தாண்டி தொழில்நுட்ப ரீதியாக செயல்படுத்தப்படும் சிறப்புத் திட்டம்.'], h: 'பயணத் தடைகளை நீக்கி, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் புரட்சிகர முயற்சி.' },
-    6: { ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்', img: 'scheme6.Jpg', p: ['தமிழகத்தில் உள்ள 1.20 கோடி இருசக்கர வாகன உரிமையாளர்களுக்கும் 100% கட்டாயக் காப்பீடு.', 'Smart Keytag மற்றும் Smart Card மூலம் ஒரு சிப் நுட்பத்தில் காப்பீடு விவரங்கள் இணைக்கப்படும்.', 'Fine Free Tamil Nadu என்னும் இலக்கை அடைய வாகன பாதுகாப்பு மற்றும் சட்டத்தை உறுதி செய்தல்.'], h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.' }
+    1: { ico: '💳', t: 'மகளிர் அவசர நிதி திட்டம்', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: ['மகளிர் ரூ.2000 & ரூ.2500 நிதிக்கான அங்கீகரிக்கப்பட்ட ஸ்மார்ட் கார்டை (Credit Card) போல பயன்படுத்தலாம்.', 'வங்கி மற்றும் நிதி நிறுவனங்களில் (Bonds and Binding) முறையில் அவசர கால நிதியாகப் பெறலாம்.', 'ஆயிரம் ரூபாய் நிதி பெறும் மாணவர்கள் மற்றும் பிற அரசு பயனாளர்களுக்கும் இது பொருந்தும்.'], h: 'பெண்களின் அவசரத் தேவைகளுக்காக வங்கிகளுடன் இணைந்து செயல்படுத்தப்படும் சிறப்பு நிதித் திட்டம்.' },
+    2: { ico: '🚗', t: 'இலவச ஓட்டுனர் உரிம திட்டம்', amt: '2026 முதல் அமல்', img: 'scheme2.Jpg', p: ['10-ஆம் வகுப்பு முதல் 17+ வயது வரை 67% இளைஞர்களுக்கு வாகனம் ஓட்டத் தெரியும்; அவர்களுக்கு அரசு உரிமம் வழங்கும்.', '16+ வயதுடையவர்களுக்கு MCWOG-லிருந்து MCWG-க்கு சட்டதிருத்தம் செய்ய மத்திய அரசிற்கு பரிந்துரைக்கும் திட்டம்.', 'இத்திட்டத்தில் (Spot Fine) தவிர்க்கப்படுவதும், Fine free Tamil Nadu என அமைந்திட உதவும் ஓர் சிறப்பு திட்டம்.'], h: 'தலைவரின் பெயரைச் சொல்லி 20 ஆண்டுகாலம் பேசப்படும் வகையில் சரித்திரம் படைக்கப்போகும் எதிர்காலத் திட்டம்.' },
+    3: { ico: '🌿', t: 'Emission Test Free Tag திட்டம்', amt: '100% இலவசம்', img: 'scheme3.Jpg', p: ['வாகன பராமரிப்பை உறுதி செய்து கரிமலவாயு வெளியேற்றத்தை கண்டறியும் தமிழகத்தின் முதல் முறையிலான ஏற்பாடு.', 'உலக வெப்பமயமாதலை எதிர்கொள்ளும் வகையில் சுற்றுச்சூழலைப் பாதுகாக்கும் உலகிற்கு ஒரு முன்னோடி பசுமைத் திட்டம்.', 'தில்லி போன்ற பாதிப்புகள் தமிழகத்தில் ஏற்படாமல் மக்களின் ஆரோக்கியம் காக்க உரிய மாசற்ற நகர ஏற்பாடு.'], h: 'சுற்றுப்புறத் தூய்மையை உறுதி செய்து, ஆரோக்கியமான தமிழகத்தை உருவாக்குவதே எமது நோக்கம்.' },
+    4: { ico: '🍽️', t: 'மூத்த குடிமக்கள் உணவு திட்டம்', amt: 'தரமான உணவு உறுதி', p: ['மூத்த குடிமக்கள் தங்கள் ஊரிலே உள்ள அங்கீகரிக்கப்பட்ட உணவகங்களில் ஒருவேளை உணவை இலவசமாகப் பெற்றுக் கொள்ளலாம்.', 'உணவின் தரம் மற்றும் சுகாதாரம் அரசால் உறுதி செய்யப்பட்டு ஆரோக்கியம் மேம்படுத்தப்படும்.', 'முதியவர்கள் கண்ணியத்துடனும், சமூக பாதுகாப்புடனும் வாழ்வதை உறுதி செய்யும் மனிதாபிமான திட்டம்.'], h: 'முதியவர்களின் பசி போக்கி, அவர்களின் கண்ணியத்தைப் பாதுகாப்பது எமது தலையாய கடமை.' },
+    5: { ico: '🏍️', t: 'இருசக்கர வாகன காப்பீடு திட்டம்', amt: '1.20 கோடி பயனாளர்கள்', img: 'scheme6.Jpg', p: ['டிஜிட்டல் தொழில்நுட்பத்துடன் கூடிய (Smart Keytag) மற்றும் (Smart Card) வழியாக 100% காப்பீடு உறுதி செய்யப்படும்.', '(Micro Level) கண்காணிப்பு மூலம் குற்றச் செயல்கள் கட்டுப்படுத்தப்பட்டு ஓட்டுனர்களின் பாதுகாப்பும் உறுதி செய்யப்படும்.', '(Fine Free Tamil Nadu) என்னும் புதிய மாற்றத்தை நோக்கி இலகுவான போக்குவரத்து அணுகுமுறைக்கான திட்டம்.'], h: 'இருசக்கர வாகன ஓட்டிகளின் பாதுகாப்பை உறுதி செய்து, விபத்து காலங்களில் உடனடி உதவி.' },
+    6: { ico: '🛣️', t: 'Free Tag — சுங்க விலக்கு திட்டம்', amt: 'சுங்கவரி இல்லா பயணம்', p: ['மருத்துவ காரணங்கள் மற்றும் விவசாய பெருங்குடி மக்கள் விளைபொருட்களை எடுத்துச் செல்ல முழு சுங்க விலக்கு அளிக்கப்படும்.', 'விடுமுறை நாட்கள் மற்றும் முக்கிய திருவிழா காலங்களில் சொந்த ஊர் பயணிக்கும் பொதுமக்களுக்கு சுங்கவரி கிடையாது.', '(Fast Tag) ஐ மிஞ்சும் வகையில் மக்களின் பொருளாதாரப் பொருளாதாரச் சுமையைக் குறைக்கும் ஒரு வரப்பிரசாதத் திட்டம்.'], h: 'பயணத் தடைகளை நீக்கி, மக்களின் பொருளாதாரச் சுமையைக் குறைக்கும் புரட்சிகர முயற்சி.' }
   },
   en: {
-    1: { ico: '💳', t: 'Emergency Fund for Women', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: ['Applicable to housewives, students, and other government fund beneficiaries.', 'Use your authorized Smart Card like a credit card for immediate emergency financial needs.', 'A 100% secure fund delivery system implemented via the Bonds & Binding method.'], h: 'A world-class financial initiative executed in partnership with bank governing boards.' },
-    2: { ico: '🚗', t: 'Free Driving Licence Scheme', amt: 'Effective from 2026', img: 'scheme2.Jpg', p: ['Government-funded basic driving licences for all Tamil Nadu youth.', 'Legal amendment to grant MCWG licences to youth straight after age 16.', 'Exemption from spot fines for youth who strictly follow traffic regulations.'], h: 'Building a disciplined and safe driving community for the next generation.' },
-    3: { ico: '🌿', t: 'Free Emission Test Scheme', amt: '100% Free', img: 'scheme3.Jpg', p: ['Free vehicle emission testing for all vehicle types at government expense.', 'Modern technology to detect carbon emissions and protect our environment.', 'A pioneering green initiative prioritizing public health and natural resources.'], h: 'A major effort to keep our environment clean and breathable for everyone.' },
-    4: { ico: '🍽️', t: 'Senior Citizens Food Scheme', amt: 'Quality Assured', p: ['Senior citizens can dine at government-approved restaurants near their homes.', 'One nutritious and quality meal per day provided free via Smart Card.', 'Ensuring an honorable livelihood where elders do not have to depend on others.'], h: 'Our duty is to eliminate hunger among elders and protect their dignity.' },
-    5: { ico: '🛣️', t: 'Free Tag — Toll Exemption', amt: 'Zero Toll Travel', p: ['Full toll exemption for medical emergencies and transport of agricultural goods.', 'Toll-free travel for the general public during holidays and major festivals.', 'A specialized tech-driven system that goes beyond standard FASTag protocols.'], h: 'A revolutionary move to remove travel barriers and reduce economic burdens.' },
-    6: { ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries', img: 'scheme6.Jpg', p: ['100% mandatory insurance coverage for all 1.20 crore two-wheeler owners in TN.', 'Insurance details integrated into a Smart Keytag and Smart Card chip.', 'Ensuring vehicle safety and legal compliance to achieve a "Fine Free Tamil Nadu".'], h: 'Securing the safety of two-wheeler riders with immediate assistance during accidents.' }
+    1: { ico: '💳', t: 'Womens Emergency Fund', amt: '₹24,000 – ₹48,000', img: 'scheme1.Jpg', p: ['Use your authorized ₹2,000 / ₹2,500 monthly benefit Smart Card like a standard Credit Card.', 'Get emergency funds up to ₹48,000 via the specialized Bonds and Binding system at banks.', 'Applicable to students on scholarships and all other government benefit recipients.'], h: 'A unique financial initiative to support women in emergency situations via banking partnerships.' },
+    2: { ico: '🚗', t: 'Free Driving Licence Scheme', amt: 'Effective from 2026', img: 'scheme2.Jpg', p: ['Government-funded driving licences for youth from 10th standard up to 17+ years.', 'Advocacy for legal amendment to upgrade 16+ MCWOG to MCWG licences via Central Govt.', 'A move towards a Fine-free Tamil Nadu by building a law-abiding driving community.'], h: 'Securing the future of our youth while reducing the financial burden on parents.' },
+    3: { ico: '🌿', t: 'Emission Test Free Tag', amt: '100% Free', img: 'scheme3.Jpg', p: ['Detecting carbon emissions to ensure proper vehicle maintenance and air quality.', 'A pioneering green initiative to combat global warming and prioritize natural resources.', 'Creating pollution-free cities to safeguard the health of our citizens and the environment.'], h: 'Our major effort to keep Tamil Nadus air clean and breathable for everyone.' },
+    4: { ico: '🍽️', t: 'Elderly Nutrition Program', amt: 'Quality Assured', p: ['Senior citizens can get one nutritious meal per day for free at authorized local restaurants.', 'Food quality and hygiene are strictly monitored and certified by the government.', 'Ensuring an honorable livelihood where elders live with dignity and social security.'], h: 'Our primary duty is to eliminate hunger among elders and protect their dignity.' },
+    5: { ico: '🏍️', t: 'Two-Wheeler Insurance Scheme', amt: '1.20 Crore Beneficiaries', img: 'scheme6.Jpg', p: ['Insurance details integrated into digital Smart Keytags and specialized Smart Cards.', 'Ensuring 100% insurance coverage and micro-level monitoring to control crime.', 'Fostering a free and easy relationship between the public and traffic police.'], h: 'Ensuring rider safety and legal compliance via the New Independence Scheme.' },
+    6: { ico: '🛣️', t: 'Free Tag — Toll Exemption', amt: 'Zero Toll Travel', p: ['Full toll exemption for medical emergencies and transport of agricultural goods.', 'Toll-free travel for the public during holidays and major festival periods.', 'A superior alternative to Fast Tag aimed at reducing the public economic burden.'], h: 'A revolutionary move to remove travel barriers and assist our farming community.' }
   }
 };
 
-/* ── LOGIC ── */
-function showScheme(id) {
+/* ── TRANSITION LOGIC ── */
+function transitionToScheme(id) {
+  const data = SCHEME_DATA[curLang][id];
+  const container = document.getElementById('schemeDetail');
+  if (!container) return;
+
+  // 3s Interstitial State
+  container.style.opacity = '0';
+  setTimeout(() => {
+    container.innerHTML = `
+      <div class="sd-preview">
+        <div class="preview-label">${curLang === 'ta' ? 'அடுத்த திட்டம்' : 'NEXT SCHEME'}</div>
+        ${data.img ? `<img src="${data.img}" class="sd-banner preview-banner" alt="Next">` : ''}
+        <h2 class="preview-title">${data.t}</h2>
+        <div class="preview-loader"><div class="pl-fill"></div></div>
+      </div>
+    `;
+    container.style.opacity = '1';
+  }, 300);
+
+  // After 3s, show full details
+  setTimeout(() => {
+    showScheme(id);
+  }, 3000);
+}
+
+function showScheme(id, fromManual = false) {
   currentSchemeId = parseInt(id);
   const data = SCHEME_DATA[curLang][currentSchemeId];
   const container = document.getElementById('schemeDetail');
@@ -132,7 +157,7 @@ function showScheme(id) {
     `;
     container.style.opacity = '1';
     if (window.innerWidth < 900) window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 100);
+  }, 300);
 
   speak(`${data.t}. ${data.p.join('. ')}`);
   resetAutoCycle();
@@ -142,8 +167,8 @@ function showScheme(id) {
 function initAutoCycle() {
   autoTimer = setInterval(() => {
     let nextId = (currentSchemeId % 6) + 1;
-    showScheme(nextId);
-  }, 25000); // 25 Seconds
+    transitionToScheme(nextId);
+  }, 37000); // 37s + 3s transition = 40s Total
 }
 
 function resetAutoCycle() {
